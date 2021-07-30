@@ -2,8 +2,8 @@ package com.github.bartoszreszka.lighting_chart;
 
 public class LocationCoordinates implements Location {
 
-    private double lat;
-    private double lng;
+    private final double lat,
+                         lng;
     private String locationName;
 
     public LocationCoordinates(double lat, double lng) {
@@ -25,6 +25,11 @@ public class LocationCoordinates implements Location {
     @Override
     public double lng() {
         return lng;
+    }
+
+    @Override
+    public double[] coords() {
+        return new double[]{lat, lng};
     }
 
     @Override

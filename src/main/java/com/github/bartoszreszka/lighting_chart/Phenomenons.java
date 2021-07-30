@@ -3,11 +3,12 @@ package com.github.bartoszreszka.lighting_chart;
 public enum Phenomenons {
     SUNRISE ("sunrise"),
     SUNSET ("sunset"),
-    MOONRISE ("rise"),
-    MOONSET ("set"),
-    MOONFRACTION ("fraction"),
-    MOONPHASE ("phase"),
-    MOONANGLE ("angle");
+    SUNTIMES ("suntimes"),
+    MOONRISE ("moonrise"),
+    MOONSET ("moonset"),
+    MOONTIMES ("moontimes"),
+    MOONPHASE ("moonphase"), // Date and time of new moon, full moon and half moons.
+    ALL ("all");
 
     private final String phenomenon;
 

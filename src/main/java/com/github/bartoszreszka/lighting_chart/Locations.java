@@ -4,9 +4,9 @@ public enum Locations implements Location {
     PW_GDYNIA (54.54d, 18.55d, "Port wojenny Gdynia."),
     PW_SWINO (53.90d, 14.25d, "Port wojenny Świnoujście.");
 
-    private final double lat;
-    private final double lng;
-    private String locationName;
+    private final double lat,
+                         lng;
+    private final String locationName;
 
     Locations(double lat, double lng, String locationName) {
         this.lat = lat;
@@ -16,12 +16,17 @@ public enum Locations implements Location {
 
     @Override
     public double lat() {
-        return 0;
+        return lat;
     }
 
     @Override
     public double lng() {
-        return 0;
+        return lng;
+    }
+
+    @Override
+    public double[] coords() {
+        return new double[]{lat, lng};
     }
 
     @Override

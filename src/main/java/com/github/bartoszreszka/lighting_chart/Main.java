@@ -1,6 +1,7 @@
 package com.github.bartoszreszka.lighting_chart;
 
 import static com.github.bartoszreszka.lighting_chart.Computations.*;
+import static com.github.bartoszreszka.lighting_chart.Locations.*;
 
 /**
  * Program calculates and generates "lighting chart" for following phenomenons in a given month:
@@ -11,15 +12,27 @@ import static com.github.bartoszreszka.lighting_chart.Computations.*;
  *     <li>moonset (moon disappears below the horizon);</li>
  *     <li>and moon phase.</li>
  * </ul>
- * <p>
- * @see     <a href="https://github.com/shred/commons-suncalc">commons-suncalc</a>;
+ * <br>
+ * @see     <a href="https://shredzone.org/">commons-suncalc</a>;
  * @version 1.1
  * @author  Bartosz Reszka
  * */
 public class Main {
     public static void main(String[] args) {
 
-        computeAll(Locations.PW_GDYNIA, new Day());
+        /*
+        * +1. Set location
+        * 2. Set date
+        * 3. Make calculations
+        * 4. Aggregate results
+        * 5. Repeat pts 2-4 as needed
+        * 6. Print results in an approachable way.
+        * */
+
+        location = PW_GDYNIA;
+        month = new Month(2021, 2);
+
+//        computeAll(location, new Day());
 
     }
 }

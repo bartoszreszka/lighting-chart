@@ -1,6 +1,7 @@
 package com.github.bartoszreszka.lighting_chart;
 
 import java.time.ZonedDateTime;
+import java.util.Arrays;
 
 public class Day {
 
@@ -30,5 +31,22 @@ public class Day {
 
     public int getDay() {
         return day;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Day)) return false;
+        Day thatDayObject = (Day) o;
+        int[] thisDay = new int[] {this.year, this.month, this.day};
+        int[] thatDay = new int[] {thatDayObject.year, thatDayObject.month, thatDayObject.day};
+        return Arrays.equals(thisDay, thatDay);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(day).append(".").append(month).append(".").append(year);
+        return sb.toString();
     }
 }

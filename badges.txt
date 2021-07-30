@@ -1,0 +1,7 @@
+README.md
+
+![GitHub top language](https://img.shields.io/github/languages/top/bartoszreszka/lighting-chart)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/bartoszreszka/lighting-chart)
+
+![GitHub](https://img.shields.io/github/license/bartoszreszka/lighting-chart)
