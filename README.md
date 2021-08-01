@@ -1,5 +1,5 @@
 # Lighting chart
-![GitHub](https://img.shields.io/github/license/bartoszreszka/lighting-chart) ![GitHub top language](https://img.shields.io/github/languages/top/bartoszreszka/lighting-chart) ![GitHub last commit](https://img.shields.io/github/last-commit/bartoszreszka/lighting-chart) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bartoszreszka/lighting-chart)
+![GitHub](https://img.shields.io/github/license/bartoszreszka/lighting-chart) ![GitHub top language](https://img.shields.io/github/languages/top/bartoszreszka/lighting-chart) ![GitHub last commit](https://img.shields.io/github/last-commit/bartoszreszka/lighting-chart) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/bartoszreszka/lighting-chart?include_prereleases)
 
 A Java program that calculates times and generates "lighting chart" for following phenomenons in a given month:
 - sunrise (top edge of the sun appears on the horizon);
