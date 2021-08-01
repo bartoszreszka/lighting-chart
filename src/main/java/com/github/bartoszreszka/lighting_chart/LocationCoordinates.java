@@ -9,6 +9,7 @@ public class LocationCoordinates implements Location {
     public LocationCoordinates(double lat, double lng) {
         this.lat = lat;
         this.lng = lng;
+        this.locationName = "";
     }
 
     public LocationCoordinates(double lat, double lng, String locationName) {
@@ -25,11 +26,6 @@ public class LocationCoordinates implements Location {
     @Override
     public double lng() {
         return lng;
-    }
-
-    @Override
-    public double[] coords() {
-        return new double[]{lat, lng};
     }
 
     @Override

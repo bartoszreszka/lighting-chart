@@ -14,7 +14,7 @@ import static com.github.bartoszreszka.lighting_chart.Locations.*;
  * </ul>
  * <br>
  * @see     <a href="https://shredzone.org/">commons-suncalc</a>;
- * @version 1.1
+ * @version 1.1.0-alpha
  * @author  Bartosz Reszka
  * */
 public class Main {
@@ -22,7 +22,7 @@ public class Main {
 
         /*
         * +1. Set location
-        * 2. Set date
+        * +2. Set date
         * 3. Make calculations
         * 4. Aggregate results
         * 5. Repeat pts 2-4 as needed
@@ -30,9 +30,8 @@ public class Main {
         * */
 
         location = PW_GDYNIA;
-        month = new Month(2021, 2);
-
-//        computeAll(location, new Day());
+        month = new Month(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+        execute();
 
     }
 }

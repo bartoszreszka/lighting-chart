@@ -25,11 +25,6 @@ public enum Locations implements Location {
     }
 
     @Override
-    public double[] coords() {
-        return new double[]{lat, lng};
-    }
-
-    @Override
     public String locName() {
         return locationName;
     }

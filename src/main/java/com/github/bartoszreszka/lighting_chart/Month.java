@@ -12,7 +12,9 @@ class Month {
     public Month(int year, int month) {
         int length = YearMonth.of(year, month).lengthOfMonth();
         for (int i = 0; i < length; i++) {
-            days.add(new Day(year, month, i + 1));
+            this.days.add(new Day(year, month, i + 1));
         }
     }
+
+    // TODO: 01.08.2021 Constructor for a specific number of days - between explicitly specified dates.
 }

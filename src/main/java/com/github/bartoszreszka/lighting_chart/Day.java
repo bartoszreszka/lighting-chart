@@ -1,13 +1,16 @@
 package com.github.bartoszreszka.lighting_chart;
 
+import org.shredzone.commons.suncalc.MoonTimes;
+import org.shredzone.commons.suncalc.SunTimes;
+
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 
 public class Day {
 
-    private int year;
-    private int month;
-    private int day;
+    final int year, month, day;
+    SunTimes sunTimes;
+    MoonTimes moonTimes;
 
     public Day() {
         this.year = ZonedDateTime.now().getYear();
@@ -19,18 +22,6 @@ public class Day {
         this.year = year;
         this.month = month;
         this.day = day;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public int getDay() {
-        return day;
     }
 
     @Override
@@ -45,8 +36,6 @@ public class Day {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(day).append(".").append(month).append(".").append(year);
-        return sb.toString();
+        return String.format("%02d.%02d." + year, day, month);
     }
 }
