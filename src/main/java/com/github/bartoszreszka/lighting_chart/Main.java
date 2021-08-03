@@ -1,7 +1,6 @@
 package com.github.bartoszreszka.lighting_chart;
 
 import static com.github.bartoszreszka.lighting_chart.Computations.*;
-import static com.github.bartoszreszka.lighting_chart.Locations.*;
 
 /**
  * Program calculates and generates "lighting chart" for following phenomenons in a given month:
@@ -29,7 +28,7 @@ public class Main {
         * 6. Print results in an approachable way.
         * */
 
-        location = PW_GDYNIA;
+        location = new LocationCoordinates(54.5521d, 18.4555d);
         month = new Month(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
         execute();
 
