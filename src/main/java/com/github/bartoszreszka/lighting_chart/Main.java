@@ -13,7 +13,7 @@ import static com.github.bartoszreszka.lighting_chart.Computations.*;
  * </ul>
  * <br>
  * @see     <a href="https://shredzone.org/">commons-suncalc</a>;
- * @version 0.2.0
+ * @version 0.2.1
  * @author  Bartosz Reszka
  * */
 public class Main {
