@@ -4,7 +4,7 @@ public class LocationCoordinates implements Location {
 
     private final double lat,
                          lng;
-    private String locationName;
+    private final String locationName;
 
     public LocationCoordinates(double lat, double lng) {
         this.lat = lat;
