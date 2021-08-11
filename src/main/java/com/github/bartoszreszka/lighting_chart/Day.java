@@ -6,6 +6,10 @@ import org.shredzone.commons.suncalc.SunTimes;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 
+/**
+ * Stores {@link #sunTimes} and {@link #moonTimes} for a single day explicitly specified
+ * by {@link #year}, {@link #month} and {@link #day}.
+ * */
 public class Day {
 
     final int year, month, day;
