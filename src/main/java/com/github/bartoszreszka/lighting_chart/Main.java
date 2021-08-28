@@ -29,8 +29,8 @@ public class Main {
         * */
 
         location = new LocationCoordinates(54.5521d, 18.4555d);
-        month = new Month(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+//        month = new Month(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+        month = new Month(2021, 8);
         execute();
-
     }
 }
