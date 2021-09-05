@@ -1,8 +1,8 @@
 package com.github.bartoszreszka.lighting_chart;
 
 public enum Locations implements Location {
-    PW_GDYNIA (54.54d, 18.55d, "Port wojenny Gdynia."),
-    PW_SWINO (53.90d, 14.25d, "Port wojenny Świnoujście.");
+    PW_GDYNIA (54.54d, 18.55d, "Port wojenny Gdynia"),
+    PW_SWINO (53.90d, 14.25d, "Port wojenny Świnoujście");
 
     private final double lat,
                          lng;
@@ -26,6 +26,11 @@ public enum Locations implements Location {
 
     @Override
     public String locName() {
+        return locationName;
+    }
+
+    @Override
+    public String toString() {
         return locationName;
     }
 }
