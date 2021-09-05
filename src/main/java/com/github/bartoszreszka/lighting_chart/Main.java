@@ -28,9 +28,13 @@ public class Main {
         * 6. Print results in an approachable way.
         * */
 
+        /* Set location and date manually - just for testing */
         location = new LocationCoordinates(54.5521d, 18.4555d);
 //        month = new Month(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
         month = new Month(2021, 8);
         execute();
+
+        /* Create and display graphic user interface */
+        new GUI().setVisible(true);
     }
 }
