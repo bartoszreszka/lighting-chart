@@ -35,7 +35,8 @@ public class Computations {
         }
     }
 
-    private static void printLocationName() {
+    // TODO: 08.09.2021 public for testing only - change to private
+    public static void printLocationName() {
         if (!(location.locName().isEmpty())) {
             System.out.println("***   " + location.locName() + "   ***");
         } else {

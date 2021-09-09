@@ -1,7 +1,5 @@
 package com.github.bartoszreszka.lighting_chart;
 
-import static com.github.bartoszreszka.lighting_chart.Computations.*;
-
 /**
  * Program calculates and generates "lighting chart" for following phenomenons in a given month:
  * <ul>
@@ -18,23 +16,7 @@ import static com.github.bartoszreszka.lighting_chart.Computations.*;
  * */
 public class Main {
     public static void main(String[] args) {
-
-        /*
-        * +1. Set location
-        * +2. Set date
-        * 3. Make calculations
-        * 4. Aggregate results
-        * 5. Repeat pts 2-4 as needed
-        * 6. Print results in an approachable way.
-        * */
-
-        /* Set location and date manually - just for testing */
-        location = new LocationCoordinates(54.5521d, 18.4555d);
-//        month = new Month(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-        month = new Month(2021, 8);
-        execute();
-
-        /* Create and display graphic user interface */
+        double lat;
         new GUI().setVisible(true);
     }
 }
