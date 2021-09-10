@@ -5,18 +5,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.stream.Collectors;
 
 public class GUI extends JDialog {
     private JPanel contentPane;
-    private JButton buttonOK;
     private JSpinner spinner1;
+    private JSpinner spinner2;
     private JComboBox predefinedHarboursComboBox;
     private JTextField latDegField;
     private JTextField longDegField;
     private JTextField latMinutesField;
     private JTextField longMinutesField;
     private JTextField pointNameField;
-    private JSpinner spinner2;
+    private JButton buttonOK;
 
     public GUI() {
         setContentPane(contentPane);
@@ -51,25 +52,37 @@ public class GUI extends JDialog {
         double  latMinutes,
                 lngMinutes;
 
-        // Parse degrees and minutes given separately:
-        if (!latMinutesField.getText().isEmpty() || !longMinutesField.getText().isEmpty()) {
-            latDeg = Integer.parseInt(latDegField.getText());
-            latMinutes = Double.parseDouble(latMinutesField.getText());
-            lngDeg = Integer.parseInt(longDegField.getText());
-            lngMinutes = Double.parseDouble(longMinutesField.getText());
-            lat = latDeg + (latMinutes / 60);
-            lng = lngDeg + (lngMinutes / 60);
-        // Parse degrees given in decimal format:
+        if (isCoordsProvided()) {
+            if (!latMinutesField.getText().isEmpty() || !longMinutesField.getText().isEmpty()) {
+                /* Parse degrees and minutes given separately */
+                latDeg = Integer.parseInt(latDegField.getText());
+                latMinutes = Double.parseDouble(latMinutesField.getText());
+                lngDeg = Integer.parseInt(longDegField.getText());
+                lngMinutes = Double.parseDouble(longMinutesField.getText());
+                lat = latDeg + (latMinutes / 60);
+                lng = lngDeg + (lngMinutes / 60);
+            } else {
+                /* Parse degrees given in decimal format */
+                lat = Double.parseDouble(latDegField.getText());
+                lng = Double.parseDouble(longDegField.getText());
+            }
+            if (!pointNameField.getText().isEmpty()) {
+                location = new LocationCoordinates(lat, lng, pointNameField.getText());
+            } else {
+                location = new LocationCoordinates(lat, lng);
+            }
         } else {
-            lat = Double.parseDouble(latDegField.getText());
-            lng = Double.parseDouble(longDegField.getText());
-        }
-        if (!pointNameField.getText().isEmpty()) {
-            location = new LocationCoordinates(lat, lng, pointNameField.getText());
-        } else {
-            location = new LocationCoordinates(lat, lng);
+            /* Get harbour selected from comboBox */
+            location = Arrays.stream(Locations.values())
+                    .filter(locations -> locations.locName().equals(predefinedHarboursComboBox.getSelectedItem().toString()))
+                    .collect(Collectors.toList())
+                    .get(0);
         }
         return location;
+    }
+
+    private boolean isCoordsProvided() {
+        return !latDegField.getText().isEmpty() && !longDegField.getText().isEmpty();
     }
 
     private void createUIComponents() {
