@@ -20,8 +20,11 @@ public class GUI extends JDialog {
     private JButton buttonOK;
 
     public GUI() {
+        setTitle("Grafik Oświetlenia");
         setContentPane(contentPane);
-        setModal(true);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pack();
+        setResizable(false);
         getRootPane().setDefaultButton(buttonOK);
 
         // Populates ComboBox with harbour names from Locations enum.
@@ -86,7 +89,7 @@ public class GUI extends JDialog {
     }
 
     private void createUIComponents() {
-        spinner1 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.MONTH), 1, 12, 1));
-        spinner2 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.YEAR), 1900, 2100, 1));
+        spinner1 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.MONTH) + 2, 1, 12, 1));
+        spinner2 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.YEAR), 1900, 2200, 1));
     }
 }
