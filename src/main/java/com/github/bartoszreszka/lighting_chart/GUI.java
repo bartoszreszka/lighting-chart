@@ -20,7 +20,7 @@ public class GUI extends JDialog {
     private JButton buttonOK;
 
     public GUI() {
-        setTitle("Grafik Oświetlenia");
+        setTitle("Grafik Oświetlenia.");
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
