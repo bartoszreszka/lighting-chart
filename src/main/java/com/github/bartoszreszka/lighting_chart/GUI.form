@@ -95,7 +95,7 @@
           </component>
         </children>
       </grid>
-      <grid id="2a7c4" layout-manager="GridLayoutManager" row-count="4" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="2a7c4" layout-manager="GridLayoutManager" row-count="3" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
@@ -113,7 +113,7 @@
           </component>
           <component id="d2dd6" class="javax.swing.JLabel">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Długość ="/>
@@ -127,17 +127,17 @@
             </constraints>
             <properties>
               <text value=""/>
-              <toolTipText value="Wprowadź wartość kątową z wartością dziesiętną po kropce lub stopnie i minuty oddzielnie"/>
+              <toolTipText value="Wprowadź wartość kątową (od -90 do 90) z wartością dziesiętną po kropce lub stopnie i minuty oddzielnie"/>
             </properties>
           </component>
           <component id="1de21" class="javax.swing.JTextField" binding="longDegField">
             <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="198" height="30"/>
               </grid>
             </constraints>
             <properties>
-              <toolTipText value="Wprowadź wartość kątową z wartością dziesiętną po kropce lub stopnie i minuty oddzielnie"/>
+              <toolTipText value="Wprowadź wartość kątową (od -180 do 180) z wartością dziesiętną po kropce lub stopnie i minuty oddzielnie"/>
             </properties>
           </component>
           <component id="4699" class="javax.swing.JTextField" binding="latMinutesField">
@@ -148,15 +148,18 @@
             </constraints>
             <properties>
               <text value=""/>
+              <toolTipText value="Minuty kątowe"/>
             </properties>
           </component>
           <component id="d2e1d" class="javax.swing.JTextField" binding="longMinutesField">
             <constraints>
-              <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <toolTipText value="Minuty kątowe"/>
+            </properties>
           </component>
           <component id="c4c6c" class="javax.swing.JLabel">
             <constraints>
@@ -168,7 +171,7 @@
           </component>
           <component id="8d966" class="javax.swing.JLabel">
             <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="deg"/>
@@ -184,7 +187,7 @@
           </component>
           <component id="c078e" class="javax.swing.JLabel">
             <constraints>
-              <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="'"/>

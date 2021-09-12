@@ -23,11 +23,12 @@ public class GUI extends JDialog {
         setTitle("Grafik Oświetlenia.");
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        pack();
+        pack(); // Adjust window size to its content.
         setResizable(false);
+        setLocationRelativeTo(null); // Startup position centered.
         getRootPane().setDefaultButton(buttonOK);
 
-        // Populates ComboBox with harbour names from Locations enum.
+        /* Populates ComboBox with harbour names from Locations enum. */
         predefinedHarboursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(
                 Arrays.stream(Locations.values()).map(Locations::locName).toArray(String[]::new)
         ));
