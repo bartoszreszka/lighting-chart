@@ -3,6 +3,7 @@ package com.github.bartoszreszka.lighting_chart;
 import org.shredzone.commons.suncalc.MoonTimes;
 import org.shredzone.commons.suncalc.SunTimes;
 
+import java.util.Formatter;
 import java.util.Locale;
 
 public class Computations {
@@ -10,11 +11,9 @@ public class Computations {
     static Month month;
     static Location location;
 
-    public static void execute() {
+    static void execute() {
         calculateSunTimesInMonth();
         calculateMoonTimesInMonth();
-        printLocationName();
-        printTimes();
     }
 
     private static void calculateSunTimesInMonth() {
@@ -35,8 +34,7 @@ public class Computations {
         }
     }
 
-    // TODO: 08.09.2021 public for testing only - change to private
-    public static void printLocationName() {
+    private static void printLocationNameInConsole() {
         if (!(location.locName().isEmpty())) {
             System.out.println("***   " + location.locName() + "   ***");
         } else {
@@ -47,10 +45,15 @@ public class Computations {
         }
     }
 
-    private static void printTimes() {
+    private static void printTimesInConsole() {
+        System.out.println(printTimes());
+    }
+
+    static String printTimes() {
+        StringBuilder sb = new StringBuilder();
+        Formatter f = new Formatter(sb);
         for (Day day : month.days) {
-            System.out.printf(day
-                    + "\nSunrise %02d:%02d | Moonrise %02d:%02d\nSunset  %02d:%02d | Moonset  %02d:%02d\n"
+            f.format(day + "\nSunrise %02d:%02d | Moonrise %02d:%02d\nSunset  %02d:%02d | Moonset  %02d:%02d\n"
                     ,day.sunTimes.getRise().getHour()
                     ,day.sunTimes.getRise().getMinute()
                     ,day.moonTimes.getRise().getHour()
@@ -59,8 +62,9 @@ public class Computations {
                     ,day.sunTimes.getSet().getMinute()
                     ,day.moonTimes.getSet().getHour()
                     ,day.moonTimes.getSet().getMinute()
-                    );
+            );
         }
+        return String.valueOf(sb);
     }
 }
 

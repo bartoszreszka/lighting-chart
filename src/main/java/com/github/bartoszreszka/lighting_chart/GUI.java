@@ -38,16 +38,22 @@ public class GUI extends JDialog {
                 onOK();
             }
         });
+
+        setVisible(true);
     }
 
     private void onOK() {
-        Computations.month = new Month((Integer)spinner2.getValue(), (Integer)spinner1.getValue());
-        Computations.location = parseCoords();
-        Computations.execute();
+        Computations.month = parseMonthAndYearFromSpinners();
+        Computations.location = parseCoordsFromTextFields();
+        new Chart();
         dispose();
     }
 
-    private Location parseCoords() {
+    private Month parseMonthAndYearFromSpinners() {
+        return new Month((Integer)spinner2.getValue(), (Integer)spinner1.getValue());
+    }
+
+    private Location parseCoordsFromTextFields() {
         Location location;
         double  lat,
                 lng;
