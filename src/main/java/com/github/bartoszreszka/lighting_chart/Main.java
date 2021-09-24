@@ -16,7 +16,6 @@ package com.github.bartoszreszka.lighting_chart;
  * */
 public class Main {
     public static void main(String[] args) {
-        double lat;
-        new GUI().setVisible(true);
+        new GUI();
     }
 }
