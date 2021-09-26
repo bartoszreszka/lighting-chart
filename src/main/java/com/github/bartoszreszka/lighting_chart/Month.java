@@ -15,6 +15,4 @@ class Month {
             this.days.add(new Day(year, month, i + 1));
         }
     }
-
-    // TODO: 01.08.2021 Constructor for a specific number of days - between explicitly specified dates.
 }

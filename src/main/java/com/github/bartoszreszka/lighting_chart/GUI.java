@@ -23,7 +23,7 @@ public class GUI extends JDialog {
         setTitle("Grafik Oświetlenia.");
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        pack(); // Adjust window size to its content.
+        setSize(600, 400);
         setResizable(false);
         setLocationRelativeTo(null); // Startup position centered.
         getRootPane().setDefaultButton(buttonOK);

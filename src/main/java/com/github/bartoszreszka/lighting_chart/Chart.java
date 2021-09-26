@@ -14,7 +14,7 @@ public class Chart extends JDialog {
         setTitle("Grafik Oświetlenia.");
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        pack();
+        setSize(600, 400);
         setResizable(true);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
@@ -46,11 +46,8 @@ public class Chart extends JDialog {
     }
 
     private void fillTextArea() {
-        textArea1.setText(Computations.printTimes());
-        pack();
+        textArea1.setText(Computations.print());
+//        pack();
         setLocationRelativeTo(null);
-    }
-
-    private void createUIComponents() {
     }
 }

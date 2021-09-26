@@ -1,6 +1,6 @@
 package com.github.bartoszreszka.lighting_chart;
 
-public enum Phenomenons {
+public enum Phenomena {
     SUNRISE ("sunrise"),
     SUNSET ("sunset"),
     SUNTIMES ("suntimes"),
@@ -12,7 +12,7 @@ public enum Phenomenons {
 
     private final String phenomenon;
 
-    Phenomenons (String phenomenon) {
+    Phenomena(String phenomenon) {
         this.phenomenon = phenomenon;
     }
 
