@@ -15,7 +15,7 @@ public class Chart extends JDialog {
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
-        setResizable(true);
+        setResizable(false);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
 
@@ -46,11 +46,8 @@ public class Chart extends JDialog {
     }
 
     private void fillTextArea() {
-        textArea1.setText(Computations.printTimes());
+        textArea1.setText(Computations.print());
         pack();
         setLocationRelativeTo(null);
-    }
-
-    private void createUIComponents() {
     }
 }

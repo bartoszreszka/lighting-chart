@@ -3,6 +3,7 @@ package com.github.bartoszreszka.lighting_chart;
 import org.shredzone.commons.suncalc.MoonTimes;
 import org.shredzone.commons.suncalc.SunTimes;
 
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 
@@ -26,6 +27,10 @@ public class Day {
         this.year = year;
         this.month = month;
         this.day = day;
+    }
+
+    ZonedDateTime getZonedDateTime() {
+        return ZonedDateTime.of(year, month, day, 12, 0, 0, 0, ZoneId.systemDefault());
     }
 
     @Override
