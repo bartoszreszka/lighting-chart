@@ -3,12 +3,13 @@ package com.github.bartoszreszka.lighting_chart;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class Chart extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonPrint;
-    private JTextArea textArea1;
+    JPanel chartPanel;
 
     public Chart() {
         setTitle("Grafik Oświetlenia.");
@@ -18,6 +19,7 @@ public class Chart extends JDialog {
         setResizable(true);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
+        setVisible(true);
 
         buttonOK.addActionListener(new ActionListener() {
             @Override
@@ -33,21 +35,26 @@ public class Chart extends JDialog {
             }
         });
 
-        setVisible(true);
+        // Call onOK() when ESC button pressed
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onOK();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     private void onPrint() {
         Computations.execute();
-        fillTextArea();
+        loadTextPanel();
+    }
+
+    private void loadTextPanel() {
+        Computations.execute();
+        chartPanel.add(new TextPanel(Computations.print()).getPanel());
+        contentPane.revalidate();
     }
 
     private void onOK() {
         dispose();
-    }
-
-    private void fillTextArea() {
-        textArea1.setText(Computations.print());
-//        pack();
-        setLocationRelativeTo(null);
     }
 }
