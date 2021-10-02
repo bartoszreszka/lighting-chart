@@ -44,12 +44,22 @@ public class Chart extends JDialog {
     }
 
     private void onPrint() {
-        loadTextPanel();
+//        loadTextPanel();
+        loadChartPanel();
     }
 
     private void loadTextPanel() {
         Computations.execute();
-        chartPanel.add(new TextPanel(Computations.print()).getPanel());
+        chartPanel.add(new TextPanel(Computations.print()).getTextPanel());
+        contentPane.revalidate();
+    }
+
+    private void loadChartPanel() {
+        Computations.execute();
+        ChartPanel cp = new ChartPanel();
+        setSize(cp.getSize());
+        chartPanel.add(cp);
+        setLocationRelativeTo(null);
         contentPane.revalidate();
     }
 

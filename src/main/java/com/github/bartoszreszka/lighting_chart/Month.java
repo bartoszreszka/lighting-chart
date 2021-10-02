@@ -7,11 +7,12 @@ import java.util.ArrayList;
  * Class representing a set of {@link Day}s - usually a month.
  */
 class Month {
+    int lengthOfMonth;
     ArrayList<Day> days = new ArrayList<>();
 
     public Month(int year, int month) {
-        int length = YearMonth.of(year, month).lengthOfMonth();
-        for (int i = 0; i < length; i++) {
+        lengthOfMonth = YearMonth.of(year, month).lengthOfMonth();
+        for (int i = 0; i < lengthOfMonth; i++) {
             this.days.add(new Day(year, month, i + 1));
         }
     }

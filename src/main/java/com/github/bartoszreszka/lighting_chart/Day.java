@@ -13,7 +13,9 @@ import java.util.Arrays;
  * */
 public class Day {
 
-    final int year, month, day;
+    final int year,
+              month,
+              day;
     SunTimes sunTimes;
     MoonTimes moonTimes;
 
