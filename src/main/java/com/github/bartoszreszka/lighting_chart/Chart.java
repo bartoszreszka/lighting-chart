@@ -44,7 +44,6 @@ public class Chart extends JDialog {
     }
 
     private void onPrint() {
-        Computations.execute();
         loadTextPanel();
     }
 
@@ -55,6 +54,7 @@ public class Chart extends JDialog {
     }
 
     private void onOK() {
+        Main.gui.setVisible(true);
         dispose();
     }
 }
