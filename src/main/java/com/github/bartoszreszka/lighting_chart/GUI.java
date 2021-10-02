@@ -3,6 +3,7 @@ package com.github.bartoszreszka.lighting_chart;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.stream.Collectors;
@@ -27,8 +28,9 @@ public class GUI extends JDialog {
         setResizable(false);
         setLocationRelativeTo(null); // Startup position centered.
         getRootPane().setDefaultButton(buttonOK);
+        setVisible(true);
 
-        /* Populates ComboBox with harbour names from Locations enum. */
+        // Populates ComboBox with harbour names from Locations enum.
         predefinedHarboursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(
                 Arrays.stream(Locations.values()).map(Locations::locName).toArray(String[]::new)
         ));
@@ -39,14 +41,20 @@ public class GUI extends JDialog {
             }
         });
 
-        setVisible(true);
+        // TODO: 02.10.2021 Need fix. Does not read event. 
+        // Call dispose() when ESC button pressed
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     private void onOK() {
         Computations.month = parseMonthAndYearFromSpinners();
         Computations.location = parseCoordsFromTextFields();
         new Chart();
-        dispose();
+        this.setVisible(false);
     }
 
     private Month parseMonthAndYearFromSpinners() {
@@ -64,7 +72,7 @@ public class GUI extends JDialog {
 
         if (isCoordsProvided()) {
             if (!latMinutesField.getText().isEmpty() || !longMinutesField.getText().isEmpty()) {
-                /* Parse degrees and minutes given separately */
+                // Parse degrees and minutes given separately
                 latDeg = Integer.parseInt(latDegField.getText());
                 latMinutes = Double.parseDouble(latMinutesField.getText());
                 lngDeg = Integer.parseInt(longDegField.getText());
@@ -72,7 +80,7 @@ public class GUI extends JDialog {
                 lat = latDeg + (latMinutes / 60);
                 lng = lngDeg + (lngMinutes / 60);
             } else {
-                /* Parse degrees given in decimal format */
+                // Parse degrees given in decimal format
                 lat = Double.parseDouble(latDegField.getText());
                 lng = Double.parseDouble(longDegField.getText());
             }
@@ -82,7 +90,7 @@ public class GUI extends JDialog {
                 location = new LocationCoordinates(lat, lng);
             }
         } else {
-            /* Get harbour selected from comboBox */
+            // Get harbour selected from comboBox
             location = Arrays.stream(Locations.values())
                     .filter(locations -> locations.locName().equals(predefinedHarboursComboBox.getSelectedItem().toString()))
                     .collect(Collectors.toList())

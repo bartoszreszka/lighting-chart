@@ -11,11 +11,14 @@ package com.github.bartoszreszka.lighting_chart;
  * </ul>
  * <br>
  * @see     <a href="https://shredzone.org/">commons-suncalc</a>;
- * @version 0.2.1
+ * @version 0.2.2
  * @author  Bartosz Reszka
  * */
 public class Main {
+
+    static GUI gui;
+
     public static void main(String[] args) {
-        new GUI();
+        gui = new GUI();
     }
 }
