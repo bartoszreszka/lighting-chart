@@ -73,8 +73,4 @@ public class DayPolygonPane extends JPanel {
         g.setColor(Color.WHITE);
         g.fillPolygon(dayPolygon);
     }
-
-    private void drawHourRuler() {
-
-    }
 }

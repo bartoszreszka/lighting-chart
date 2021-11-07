@@ -9,9 +9,17 @@ public class Chart extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonPrint;
-    JPanel polygonPane;
+    JPanel dayPolygonPane;
     private JPanel buttonPane;
     private JPanel chartPane;
+    private JPanel daysPaneLeft;
+    private JPanel daysPaneRight;
+    private JPanel sunrisePane;
+    private JPanel sunsetPane;
+    private JPanel moonrisePane;
+    private JPanel moonsetPane;
+    private JPanel moonphasePane;
+    private JPanel rulerPane;
 
     public Chart() {
         setTitle("Grafik Oświetlenia.");
@@ -52,7 +60,7 @@ public class Chart extends JDialog {
 
     private void loadTextPane() {
         Computations.execute();
-        polygonPane.add(new TextPane(Computations.print()).getTextPanel());
+        dayPolygonPane.add(new TextPane(Computations.print()).getTextPanel());
         contentPane.revalidate();
     }
 
@@ -60,7 +68,7 @@ public class Chart extends JDialog {
         Computations.execute();
         DayPolygonPane cp = new DayPolygonPane();
         setSize(cp.getWidth(), cp.getHeight() + buttonPane.getHeight());
-        polygonPane.add(cp);
+        dayPolygonPane.add(cp);
         setLocationRelativeTo(null);
         contentPane.revalidate();
     }
