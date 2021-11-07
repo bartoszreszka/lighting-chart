@@ -2,12 +2,12 @@ package com.github.bartoszreszka.lighting_chart;
 
 import javax.swing.*;
 
-public class TextPanel {
+public class TextPane {
 
     private JPanel textPanel;
     private JTextArea textArea;
 
-    public TextPanel(String s) {
+    public TextPane(String s) {
         this.textArea.setText(s);
     }
 

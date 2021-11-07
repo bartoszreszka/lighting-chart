@@ -9,7 +9,9 @@ public class Chart extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonPrint;
-    JPanel chartPanel;
+    JPanel polygonPane;
+    private JPanel buttonPane;
+    private JPanel chartPane;
 
     public Chart() {
         setTitle("Grafik Oświetlenia.");
@@ -45,20 +47,20 @@ public class Chart extends JDialog {
 
     private void onPrint() {
 //        loadTextPanel();
-        loadChartPanel();
+        loadChartPane();
     }
 
-    private void loadTextPanel() {
+    private void loadTextPane() {
         Computations.execute();
-        chartPanel.add(new TextPanel(Computations.print()).getTextPanel());
+        polygonPane.add(new TextPane(Computations.print()).getTextPanel());
         contentPane.revalidate();
     }
 
-    private void loadChartPanel() {
+    private void loadChartPane() {
         Computations.execute();
-        ChartPanel cp = new ChartPanel();
-        setSize(cp.getSize());
-        chartPanel.add(cp);
+        DayPolygonPane cp = new DayPolygonPane();
+        setSize(cp.getWidth(), cp.getHeight() + buttonPane.getHeight());
+        polygonPane.add(cp);
         setLocationRelativeTo(null);
         contentPane.revalidate();
     }
