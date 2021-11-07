@@ -1,25 +1,36 @@
 package com.github.bartoszreszka.lighting_chart;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class Chart extends JDialog {
+    // <-- Change chart appearance here:
+    static final int dayStepInPixels = 20;
+    static final int hourStepInPixels = 60;
+    static Font font = new Font("Arial", Font.PLAIN, 20);
+    static Color backgroundColor = Color.BLUE;
+    static Color dayColor = Color.WHITE;
+    static Color textBackgroundColor = Color.WHITE;
+    static Color textColor = Color.BLACK;
+    // -->
+
     private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonPrint;
-    JPanel dayPolygonPane;
-    private JPanel buttonPane;
-    private JPanel chartPane;
-    private JPanel daysPaneLeft;
-    private JPanel daysPaneRight;
-    private JPanel sunrisePane;
-    private JPanel sunsetPane;
-    private JPanel moonrisePane;
-    private JPanel moonsetPane;
-    private JPanel moonphasePane;
-    private JPanel rulerPane;
+        private JPanel rulerPane;
+        private JPanel chartPane;
+            private JPanel dayPolygonPane;
+            private JPanel daysPaneLeft;
+            private JPanel daysPaneRight;
+            private JPanel sunrisePane;
+            private JPanel sunsetPane;
+            private JPanel moonrisePane;
+            private JPanel moonsetPane;
+            private JPanel moonphasePane;
+        private JPanel buttonPane;
+            private JButton buttonOK;
+            private JButton buttonPrint;
 
     public Chart() {
         setTitle("Grafik Oświetlenia.");
@@ -30,6 +41,7 @@ public class Chart extends JDialog {
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
         setVisible(true);
+        loadAllPanes();
 
         buttonOK.addActionListener(new ActionListener() {
             @Override
@@ -54,27 +66,24 @@ public class Chart extends JDialog {
     }
 
     private void onPrint() {
-//        loadTextPanel();
-        loadChartPane();
-    }
-
-    private void loadTextPane() {
-        Computations.execute();
-        dayPolygonPane.add(new TextPane(Computations.print()).getTextPanel());
-        contentPane.revalidate();
-    }
-
-    private void loadChartPane() {
-        Computations.execute();
-        DayPolygonPane cp = new DayPolygonPane();
-        setSize(cp.getWidth(), cp.getHeight() + buttonPane.getHeight());
-        dayPolygonPane.add(cp);
-        setLocationRelativeTo(null);
-        contentPane.revalidate();
+        loadAllPanes();
     }
 
     private void onOK() {
         Main.gui.setVisible(true);
         dispose();
     }
+
+    private void loadAllPanes() {
+        Computations.execute();
+
+        DayPolygonPane dpp = new DayPolygonPane();
+        dayPolygonPane.add(dpp);
+
+        setSize(dpp.getWidth(), dpp.getHeight() + buttonPane.getHeight());
+        setLocationRelativeTo(null);
+        contentPane.revalidate();
+    }
+
+
 }

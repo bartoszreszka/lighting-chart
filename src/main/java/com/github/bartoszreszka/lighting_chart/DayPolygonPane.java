@@ -10,17 +10,12 @@ import static com.github.bartoszreszka.lighting_chart.Computations.*;
 public class DayPolygonPane extends JPanel {
 
     private final int panelWidth,
-                      panelHeight,
-                      dayStepInPixels,
-                      hourStepInPixels;
+                      panelHeight;
     private Polygon dayPolygon;
 
-
     public DayPolygonPane() {
-        dayStepInPixels = 20;
-        hourStepInPixels = 60;
-        panelWidth = 24 * hourStepInPixels;
-        panelHeight = month.lengthOfMonth * dayStepInPixels;
+        panelWidth = 24 * Chart.hourStepInPixels;
+        panelHeight = month.lengthOfMonth * Chart.dayStepInPixels;
         setSize(panelWidth, panelHeight);
         repaint();
     }
@@ -29,7 +24,7 @@ public class DayPolygonPane extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         createDayPolygon();
-        drawDayPolygon(g, Color.BLUE, Color.WHITE);
+        drawDayPolygon(g, Chart.backgroundColor, Chart.dayColor);
     }
 
     private void createDayPolygon() {
@@ -39,15 +34,15 @@ public class DayPolygonPane extends JPanel {
         for (Day day : month.days) {
             if (occurs(day.sunTimes.getRise(), day)) {
                 try {
-                    dayPolygon.addPoint(day.sunTimes.getRise().getHour() * hourStepInPixels + day.sunTimes.getRise().getMinute(), i);
+                    dayPolygon.addPoint(day.sunTimes.getRise().getHour() * Chart.hourStepInPixels + day.sunTimes.getRise().getMinute(), i);
                 } catch (NullPointerException npe) {
                     dayPolygon.addPoint(0, i);
                 } finally {
-                    i += dayStepInPixels;
+                    i += Chart.dayStepInPixels;
                 }
             } else {
                 dayPolygon.addPoint(0, i);
-                i += dayStepInPixels;
+                i += Chart.dayStepInPixels;
             }
         }
 
@@ -55,10 +50,10 @@ public class DayPolygonPane extends JPanel {
         Collections.reverse(reversedDays);
 
         for (Day day : reversedDays) {
-            i -= dayStepInPixels;
+            i -= Chart.dayStepInPixels;
             if (occurs(day.sunTimes.getRise(), day)) {
                 try {
-                    dayPolygon.addPoint(day.sunTimes.getSet().getHour() * hourStepInPixels + day.sunTimes.getSet().getMinute(), i);
+                    dayPolygon.addPoint(day.sunTimes.getSet().getHour() * Chart.hourStepInPixels + day.sunTimes.getSet().getMinute(), i);
                 } catch (NullPointerException npe) {
                     dayPolygon.addPoint(panelWidth, i);
                 }
@@ -69,8 +64,8 @@ public class DayPolygonPane extends JPanel {
     }
 
     private void drawDayPolygon(Graphics g, Color backgroundColor, Color dayColor) {
-        setBackground(Color.BLUE);
-        g.setColor(Color.WHITE);
+        setBackground(backgroundColor);
+        g.setColor(dayColor);
         g.fillPolygon(dayPolygon);
     }
 }
