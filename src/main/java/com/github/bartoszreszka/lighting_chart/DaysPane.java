@@ -12,8 +12,8 @@ public class DaysPane extends JPanel {
     private String days = "abece";
 
     public DaysPane() {
-        panelWidth = 2 * Chart.hourStepInPixels;
-        panelHeight = month.lengthOfMonth * Chart.dayStepInPixels;
+        panelWidth = 2 * Chart.hourWidthInPixels;
+        panelHeight = month.lengthOfMonth * Chart.dayHeightInPixels;
         setSize(panelWidth, panelHeight);
 
         setVisible(true);

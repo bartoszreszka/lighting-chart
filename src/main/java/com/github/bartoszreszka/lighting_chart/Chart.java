@@ -8,8 +8,8 @@ import java.awt.event.KeyEvent;
 
 public class Chart extends JDialog {
     // <-- Change chart appearance here:
-    static final int dayStepInPixels = 20;
-    static final int hourStepInPixels = 60;
+    static final int dayHeightInPixels = 20;
+    static final int hourWidthInPixels = 60;
     static Font font = new Font("Arial", Font.PLAIN, 20);
     static Color backgroundColor = Color.BLUE;
     static Color dayColor = Color.WHITE;

@@ -14,8 +14,8 @@ public class DayPolygonPane extends JPanel {
     private Polygon dayPolygon;
 
     public DayPolygonPane() {
-        panelWidth = 24 * Chart.hourStepInPixels;
-        panelHeight = month.lengthOfMonth * Chart.dayStepInPixels;
+        panelWidth = 24 * Chart.hourWidthInPixels;
+        panelHeight = month.lengthOfMonth * Chart.dayHeightInPixels;
         setSize(panelWidth, panelHeight);
         repaint();
     }
@@ -34,15 +34,15 @@ public class DayPolygonPane extends JPanel {
         for (Day day : month.days) {
             if (occurs(day.sunTimes.getRise(), day)) {
                 try {
-                    dayPolygon.addPoint(day.sunTimes.getRise().getHour() * Chart.hourStepInPixels + day.sunTimes.getRise().getMinute(), i);
+                    dayPolygon.addPoint(day.sunTimes.getRise().getHour() * Chart.hourWidthInPixels + day.sunTimes.getRise().getMinute(), i);
                 } catch (NullPointerException npe) {
                     dayPolygon.addPoint(0, i);
                 } finally {
-                    i += Chart.dayStepInPixels;
+                    i += Chart.dayHeightInPixels;
                 }
             } else {
                 dayPolygon.addPoint(0, i);
-                i += Chart.dayStepInPixels;
+                i += Chart.dayHeightInPixels;
             }
         }
 
@@ -50,10 +50,10 @@ public class DayPolygonPane extends JPanel {
         Collections.reverse(reversedDays);
 
         for (Day day : reversedDays) {
-            i -= Chart.dayStepInPixels;
+            i -= Chart.dayHeightInPixels;
             if (occurs(day.sunTimes.getRise(), day)) {
                 try {
-                    dayPolygon.addPoint(day.sunTimes.getSet().getHour() * Chart.hourStepInPixels + day.sunTimes.getSet().getMinute(), i);
+                    dayPolygon.addPoint(day.sunTimes.getSet().getHour() * Chart.hourWidthInPixels + day.sunTimes.getSet().getMinute(), i);
                 } catch (NullPointerException npe) {
                     dayPolygon.addPoint(panelWidth, i);
                 }
