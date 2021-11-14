@@ -10,7 +10,8 @@ public class Chart extends JDialog {
     // <-- Change chart appearance here:
     static final int dayHeightInPixels = 20;
     static final int hourWidthInPixels = 60;
-    static Font font = new Font("Arial", Font.PLAIN, 20);
+    static int fontHeight = 16;
+    static Font font = new Font("Arial", Font.BOLD, fontHeight);
     static Color backgroundColor = Color.BLUE;
     static Color dayColor = Color.WHITE;
     static Color textBackgroundColor = Color.WHITE;
@@ -36,7 +37,7 @@ public class Chart extends JDialog {
         setTitle("Grafik Oświetlenia.");
         setContentPane(contentPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(600, 400);
+//        setSize(600, 400);
         setResizable(true);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
@@ -77,6 +78,8 @@ public class Chart extends JDialog {
     private void loadAllPanes() {
         Computations.execute();
 
+        rulerPane.add(new RulerPane());
+
         DayPolygonPane dpp = new DayPolygonPane();
         dayPolygonPane.add(dpp);
 
@@ -84,6 +87,5 @@ public class Chart extends JDialog {
         setLocationRelativeTo(null);
         contentPane.revalidate();
     }
-
 
 }
