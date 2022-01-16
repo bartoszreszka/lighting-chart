@@ -5,17 +5,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Chart extends JDialog {
-    // <-- Change chart appearance here:
-    static final int dayHeightInPixels = 20;
-    static final int hourWidthInPixels = 60;
-    static int fontHeight = 16;
-    static Font font = new Font("Arial", Font.BOLD, fontHeight);
-    static Color backgroundColor = Color.BLUE;
-    static Color dayColor = Color.WHITE;
-    static Color textBackgroundColor = Color.WHITE;
-    static Color textColor = Color.BLACK;
-    // -->
-
+    static int dayHeightInPixels;
+    static int hourWidthInPixels;
+    static int fontHeight;
+    static Font font;
+    static Color backgroundColor;
+    static Color dayColor;
+    static Color textBackgroundColor;
+    static Color textColor;
     private JPanel contentPane;
         private JPanel rulerPane;
         private JPanel chartPane;
@@ -31,11 +28,22 @@ public class Chart extends JDialog {
             private JButton buttonOK;
             private JButton buttonPrint;
 
+    static {
+        dayHeightInPixels = 20;
+        hourWidthInPixels = 60;
+        fontHeight = 16;
+        font = new Font("Arial", Font.BOLD, fontHeight);
+        backgroundColor = Color.BLUE;
+        dayColor = Color.WHITE;
+        textBackgroundColor = Color.WHITE;
+        textColor = Color.BLACK;
+    }
+
     public Chart() {
         setTitle("Grafik Oświetlenia.");
         setContentPane(contentPane);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-//        setSize(600, 400);
+        setSize(600, 400);
         setResizable(true);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
