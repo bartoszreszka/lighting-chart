@@ -11,7 +11,7 @@ package com.github.bartoszreszka.lighting_chart;
  * </ul>
  * <br>
  * @see     <a href="https://shredzone.org/">commons-suncalc</a>;
- * @version 0.2.2
+ * @version 0.2.3
  * @author  Bartosz Reszka
  * */
 public class Main {
