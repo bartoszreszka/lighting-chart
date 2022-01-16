@@ -3,7 +3,6 @@ package com.github.bartoszreszka.lighting_chart;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.stream.Collectors;
@@ -41,13 +40,23 @@ public class GUI extends JDialog {
             }
         });
 
-        // TODO: 02.10.2021 Need fix. Does not read event. 
-        // Call dispose() when ESC button pressed
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+//        // TODO: 02.10.2021 Does not read event if any of fields is active.
+//        // Call dispose() when ESC button pressed
+//        contentPane.registerKeyboardAction(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                dispose();
+//            }
+//        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+//        // Second approach to resolve the above problem. Does not work either.
+//        addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyReleased(KeyEvent e) {
+//                if  (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+//                    dispose();
+//                }
+//            }
+//        });
     }
 
     private void onOK() {
