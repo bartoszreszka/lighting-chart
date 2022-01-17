@@ -23,16 +23,16 @@ public class DaysPane extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        createDaysPane();
         drawDaysPane(g, Chart.textBackgroundColor, Chart.textColor, Chart.font);
-    }
-
-    private void createDaysPane() {
     }
 
     private void drawDaysPane(Graphics g, Color backgroundColor, Color fontColor, Font font) {
         setBackground(backgroundColor);
         g.setColor(fontColor);
-        g.drawString(days, 0, 0);
+        int i = 0;
+        for (Day day : month.days) {
+            g.drawString(String.valueOf(day.getZonedDateTime().getDayOfMonth()), 0, i * Chart.dayHeightInPixels);
+            i++;
+        }
     }
 }

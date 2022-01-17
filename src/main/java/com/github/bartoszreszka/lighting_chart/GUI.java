@@ -113,7 +113,7 @@ public class GUI extends JDialog {
     }
 
     private void createUIComponents() {
-        spinner1 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.MONTH) + 2, 1, 12, 1));
+        spinner1 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.MONTH) + 1, 1, 12, 1));
         spinner2 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.YEAR), 1900, 2200, 1));
     }
 }
