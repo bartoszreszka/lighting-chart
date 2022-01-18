@@ -32,10 +32,11 @@ public class Chart extends JDialog {
         dayHeightInPixels = 20;
         hourWidthInPixels = 60;
         fontHeight = 16;
-        font = new Font("Arial", Font.BOLD, fontHeight);
+//        font = new Font("Arial", Font.PLAIN, fontHeight);
+        font = null;
         backgroundColor = Color.BLUE;
         dayColor = Color.WHITE;
-        textBackgroundColor = Color.WHITE;
+        textBackgroundColor = null;
         textColor = Color.BLACK;
     }
 

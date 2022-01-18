@@ -18,8 +18,8 @@ public class Computations {
         calculateMoonTimesInMonth();
     }
     
-    static String print() {
-        return printTimes();
+    static String printReport() {
+        return printTimesReport();
     }
 
     static boolean occurs(ZonedDateTime phenomenonOccurrenceZonedDateTime, Day day) {
@@ -61,7 +61,7 @@ public class Computations {
         return String.valueOf(sb);
     }
 
-    private static String printTimes() {
+    private static String printTimesReport() {
         StringBuilder sb = new StringBuilder(printLocationName() + "\n");
         Formatter f = new Formatter(sb);
         for (Day day : month.days) {

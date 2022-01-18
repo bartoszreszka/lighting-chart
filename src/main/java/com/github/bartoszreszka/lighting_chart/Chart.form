@@ -34,7 +34,9 @@
           </grid>
           <grid id="fb756" binding="daysPaneLeft" layout-manager="CardLayout" hgap="0" vgap="0">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="1" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="20" height="-1"/>
+              </grid>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -42,7 +44,9 @@
           </grid>
           <grid id="e020b" binding="daysPaneRight" layout-manager="CardLayout" hgap="0" vgap="0">
             <constraints>
-              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="1" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="20" height="-1"/>
+              </grid>
             </constraints>
             <properties/>
             <border type="none"/>
