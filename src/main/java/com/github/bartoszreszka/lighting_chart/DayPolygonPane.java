@@ -16,7 +16,7 @@ public class DayPolygonPane extends JPanel {
     public DayPolygonPane() {
         panelWidth = 24 * Chart.hourWidthInPixels;
         panelHeight = month.lengthOfMonth * Chart.dayHeightInPixels;
-        setSize(panelWidth, panelHeight);
+//        setSize(panelWidth, panelHeight);
         repaint();
     }
 

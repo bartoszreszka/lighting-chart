@@ -14,6 +14,7 @@ public class Chart extends JDialog {
     static Color textBackgroundColor;
     static Color textColor;
     private JPanel contentPane;
+    private JPanel titlePane;
     private JPanel rulerPane;
     private JPanel chartPane;
     private JPanel dayPolygonPane;
@@ -66,7 +67,6 @@ public class Chart extends JDialog {
                 onOK();
             }
         });
-
     }
 
     private void onPrint() {
@@ -87,9 +87,10 @@ public class Chart extends JDialog {
         DayPolygonPane dpp = new DayPolygonPane();
         dayPolygonPane.add(dpp);
 
-        setSize(dpp.getWidth(), dpp.getHeight() + 80);
+        // Fixed size in form file set: rulerPane 1440, daysPaneLeft 600.
+//        setSize(dpp.getWidth(), dpp.getHeight() + 80);
+        pack();
         setLocationRelativeTo(null);
         contentPane.revalidate();
     }
-
 }
