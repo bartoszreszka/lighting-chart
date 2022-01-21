@@ -14,28 +14,30 @@ public class Chart extends JDialog {
     static Color textBackgroundColor;
     static Color textColor;
     private JPanel contentPane;
-        private JPanel rulerPane;
-        private JPanel chartPane;
-            private JPanel dayPolygonPane;
-            private JPanel daysPaneLeft;
-            private JPanel daysPaneRight;
-            private JPanel sunrisePane;
-            private JPanel sunsetPane;
-            private JPanel moonrisePane;
-            private JPanel moonsetPane;
-            private JPanel moonphasePane;
-        private JPanel buttonPane;
-            private JButton buttonOK;
-            private JButton buttonPrint;
+    private JPanel titlePane;
+    private JPanel rulerPane;
+    private JPanel chartPane;
+    private JPanel dayPolygonPane;
+    private JPanel daysPaneLeft;
+    private JPanel daysPaneRight;
+    private JPanel sunrisePane;
+    private JPanel sunsetPane;
+    private JPanel moonrisePane;
+    private JPanel moonsetPane;
+    private JPanel moonphasePane;
+    private JPanel buttonPane;
+    private JButton buttonOK;
+    private JButton buttonPrint;
 
     static {
         dayHeightInPixels = 20;
         hourWidthInPixels = 60;
         fontHeight = 16;
-        font = new Font("Arial", Font.BOLD, fontHeight);
+//        font = new Font("Arial", Font.PLAIN, fontHeight);
+        font = null;
         backgroundColor = Color.BLUE;
         dayColor = Color.WHITE;
-        textBackgroundColor = Color.WHITE;
+        textBackgroundColor = null;
         textColor = Color.BLACK;
     }
 
@@ -43,26 +45,15 @@ public class Chart extends JDialog {
         setTitle("Grafik Oświetlenia.");
         setContentPane(contentPane);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        setSize(600, 400);
         setResizable(true);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
         setVisible(true);
         loadAllPanes();
 
-        buttonOK.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
+        buttonOK.addActionListener(e -> onOK());
 
-        buttonPrint.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onPrint();
-            }
-        });
+        buttonPrint.addActionListener(e -> onPrint());
 
         // Call onOK() when ESC button pressed
         contentPane.registerKeyboardAction(
@@ -76,7 +67,6 @@ public class Chart extends JDialog {
                 onOK();
             }
         });
-
     }
 
     private void onPrint() {
@@ -91,14 +81,16 @@ public class Chart extends JDialog {
     private void loadAllPanes() {
         Computations.execute();
 
-        rulerPane.add(new RulerPane());
+        daysPaneLeft.add(new DaysPane());
+        daysPaneRight.add(new DaysPane());
 
         DayPolygonPane dpp = new DayPolygonPane();
         dayPolygonPane.add(dpp);
 
-        setSize(dpp.getWidth(), dpp.getHeight() + buttonPane.getHeight());
+        // Fixed size in form file set: rulerPane 1440, daysPaneLeft 600.
+//        setSize(dpp.getWidth(), dpp.getHeight() + 80);
+        pack();
         setLocationRelativeTo(null);
         contentPane.revalidate();
     }
-
 }

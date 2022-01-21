@@ -8,7 +8,7 @@ public class RulerPane extends JPanel {
     private JPanel rulerPane;
 
     public RulerPane() {
-        setSize(2000, 200);
+//        setSize(2000, 200);
         repaint();
     }
 

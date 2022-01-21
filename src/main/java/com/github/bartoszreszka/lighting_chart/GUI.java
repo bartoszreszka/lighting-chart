@@ -40,7 +40,7 @@ public class GUI extends JDialog {
             }
         });
 
-//        // TODO: 02.10.2021 Does not read event if any of fields is active.
+//        // TODO: 02.10.2021 Does not call dispose(); ESC button being consumed by active text field / spinner.
 //        // Call dispose() when ESC button pressed
 //        contentPane.registerKeyboardAction(new ActionListener() {
 //            public void actionPerformed(ActionEvent e) {
@@ -64,6 +64,7 @@ public class GUI extends JDialog {
         Computations.location = parseCoordsFromTextFields();
         new Chart();
         this.setVisible(false);
+        System.out.println(Computations.printReport());
     }
 
     private Month parseMonthAndYearFromSpinners() {
@@ -113,7 +114,7 @@ public class GUI extends JDialog {
     }
 
     private void createUIComponents() {
-        spinner1 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.MONTH) + 2, 1, 12, 1));
+        spinner1 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.MONTH) + 1, 1, 12, 1));
         spinner2 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.YEAR), 1900, 2200, 1));
     }
 }
