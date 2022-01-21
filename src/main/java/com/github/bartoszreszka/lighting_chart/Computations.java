@@ -28,7 +28,37 @@ public class Computations {
         }
         return isSameDay(day.getZonedDateTime(), phenomenonOccurrenceZonedDateTime);
     }
-    
+
+    static int getHourOf (Phenomena phenomenon, Day day) {
+        switch (phenomenon) {
+            case SUNRISE:
+                return occurs(day.sunTimes.getRise(), day) ? day.sunTimes.getRise().getHour() : -1;
+            case SUNSET:
+                return occurs(day.sunTimes.getSet(), day) ? day.sunTimes.getSet().getHour() : -1;
+            case MOONRISE:
+                return occurs(day.moonTimes.getRise(), day) ? day.moonTimes.getRise().getHour() : -1;
+            case MOONSET:
+                return occurs(day.moonTimes.getSet(), day) ? day.moonTimes.getSet().getHour() : -1;
+            default:
+                return -1;
+        }
+    }
+
+    static int getMinutesOf (Phenomena phenomenon, Day day) {
+        switch (phenomenon) {
+            case SUNRISE:
+                return occurs(day.sunTimes.getRise(), day) ? day.sunTimes.getRise().getMinute() : -1;
+            case SUNSET:
+                return occurs(day.sunTimes.getSet(), day) ? day.sunTimes.getSet().getMinute() : -1;
+            case MOONRISE:
+                return occurs(day.moonTimes.getRise(), day) ? day.moonTimes.getRise().getMinute() : -1;
+            case MOONSET:
+                return occurs(day.moonTimes.getSet(), day) ? day.moonTimes.getSet().getMinute() : -1;
+            default:
+                return -1;
+        }
+    }
+
     private static void calculateSunTimesInMonth() {
         for (Day day : month.days) {
             day.sunTimes = SunTimes.compute()
@@ -66,14 +96,14 @@ public class Computations {
         Formatter f = new Formatter(sb);
         for (Day day : month.days) {
             f.format(day + "\nSunrise %02d:%02d | Moonrise %02d:%02d\nSunset  %02d:%02d | Moonset  %02d:%02d\n"
-                    ,(occurs(day.sunTimes.getRise(), day) ? day.sunTimes.getRise().getHour() : -1)
-                    ,(occurs(day.sunTimes.getRise(), day) ? day.sunTimes.getRise().getMinute() : -1)
-                    ,(occurs(day.moonTimes.getRise(), day) ? day.moonTimes.getRise().getHour() : -1)
-                    ,(occurs(day.moonTimes.getRise(), day) ? day.moonTimes.getRise().getMinute() : -1)
-                    ,(occurs(day.sunTimes.getSet(), day) ? day.sunTimes.getSet().getHour() : -1)
-                    ,(occurs(day.sunTimes.getSet(), day) ? day.sunTimes.getSet().getMinute() : -1)
-                    ,(occurs(day.moonTimes.getSet(), day) ? day.moonTimes.getSet().getHour() : -1)
-                    ,(occurs(day.moonTimes.getSet(), day) ? day.moonTimes.getSet().getMinute() : -1)
+                    ,getHourOf(Phenomena.SUNRISE, day)
+                    ,getMinutesOf(Phenomena.SUNRISE, day)
+                    ,getHourOf(Phenomena.MOONRISE, day)
+                    ,getMinutesOf(Phenomena.MOONRISE, day)
+                    ,getHourOf(Phenomena.SUNSET, day)
+                    ,getMinutesOf(Phenomena.SUNSET, day)
+                    ,getHourOf(Phenomena.MOONSET, day)
+                    ,getMinutesOf(Phenomena.MOONSET, day)
             );
         }
         return String.valueOf(sb);
