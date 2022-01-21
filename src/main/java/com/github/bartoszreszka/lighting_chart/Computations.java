@@ -95,7 +95,7 @@ public class Computations {
         StringBuilder sb = new StringBuilder(printLocationName() + "\n");
         Formatter f = new Formatter(sb);
         for (Day day : month.days) {
-            f.format(day + "\nSunrise %02d:%02d | Moonrise %02d:%02d\nSunset  %02d:%02d | Moonset  %02d:%02d\n"
+            f.format(day + "\nSunrise %02d:%02d | Moonrise %02d:%02d\nSunset  %02d:%02d | MoonsetPane  %02d:%02d\n"
                     ,getHourOf(Phenomena.SUNRISE, day)
                     ,getMinutesOf(Phenomena.SUNRISE, day)
                     ,getHourOf(Phenomena.MOONRISE, day)

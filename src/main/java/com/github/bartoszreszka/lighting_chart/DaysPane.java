@@ -1,27 +1,14 @@
 package com.github.bartoszreszka.lighting_chart;
 
-import javax.swing.*;
 import java.awt.*;
 
 import static com.github.bartoszreszka.lighting_chart.Computations.month;
 
-public class DaysPane extends JPanel {
-
-    public DaysPane() {
-        setVisible(true);
-        repaint();
-    }
+public class DaysPane extends APane {
 
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        drawDaysPane(g, Chart.textBackgroundColor, Chart.textColor, Chart.font);
-    }
-
-    private void drawDaysPane(Graphics g, Color backgroundColor, Color fontColor, Font font) {
-        setBackground(backgroundColor);
-        g.setColor(fontColor);
-        g.setFont(font);
+    protected void drawPane(Graphics g, Color backgroundColor, Color fontColor, Font font) {
+        setColor(g, backgroundColor, fontColor, font);
         int i = 0;
         for (Day day : month.days) {
             g.drawString(String.valueOf(day.getZonedDateTime().getDayOfMonth()),
