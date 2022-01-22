@@ -1,5 +1,7 @@
 package com.github.bartoszreszka.lighting_chart;
 
+import org.shredzone.commons.suncalc.MoonPhase;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,8 +32,11 @@ public class GUI extends JDialog {
         setVisible(true);
 
         // Populates ComboBox with harbour names from Locations enum.
-        predefinedHarboursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(
-                Arrays.stream(Locations.values()).map(Locations::locName).toArray(String[]::new)
+        predefinedHarboursComboBox.setModel(
+                new javax.swing.DefaultComboBoxModel<>(
+                        Arrays.stream(Locations.values())
+                        .map(Locations::locName)
+                        .toArray(String[]::new)
         ));
 
         buttonOK.addActionListener(new ActionListener() {
@@ -64,7 +69,7 @@ public class GUI extends JDialog {
         Computations.location = parseCoordsFromTextFields();
         new Chart();
         this.setVisible(false);
-        System.out.println(Computations.printReport());
+        printToStandardOutput();
     }
 
     private Month parseMonthAndYearFromSpinners() {
@@ -80,7 +85,7 @@ public class GUI extends JDialog {
         double  latMinutes,
                 lngMinutes;
 
-        if (isCoordsProvided()) {
+        if (coordsAreProvided()) {
             if (!latMinutesField.getText().isEmpty() || !longMinutesField.getText().isEmpty()) {
                 // Parse degrees and minutes given separately
                 latDeg = Integer.parseInt(latDegField.getText());
@@ -102,19 +107,41 @@ public class GUI extends JDialog {
         } else {
             // Get harbour selected from comboBox
             location = Arrays.stream(Locations.values())
-                    .filter(locations -> locations.locName().equals(predefinedHarboursComboBox.getSelectedItem().toString()))
+                    .filter(locations -> locations.locName()
+                            .equals(predefinedHarboursComboBox.getSelectedItem().toString()))
                     .collect(Collectors.toList())
                     .get(0);
         }
         return location;
     }
 
-    private boolean isCoordsProvided() {
+    private boolean coordsAreProvided() {
         return !latDegField.getText().isEmpty() && !longDegField.getText().isEmpty();
     }
 
+    private void printToStandardOutput() {
+        System.out.println(Computations
+                .report());
+        System.out.println(Computations
+                .dayOfMoonPhase(MoonPhase.Phase.NEW_MOON, Computations.month));
+        System.out.println(Computations
+                .dayOfMoonPhase(MoonPhase.Phase.FIRST_QUARTER, Computations.month));
+        System.out.println(Computations
+                .dayOfMoonPhase(MoonPhase.Phase.FULL_MOON, Computations.month));
+        System.out.println(Computations
+                .dayOfMoonPhase(MoonPhase.Phase.LAST_QUARTER, Computations.month));
+    }
+
     private void createUIComponents() {
-        spinner1 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.MONTH) + 1, 1, 12, 1));
-        spinner2 = new JSpinner(new SpinnerNumberModel(Calendar.getInstance().get(Calendar.YEAR), 1900, 2200, 1));
+        spinner1 = new JSpinner(new SpinnerNumberModel(
+                        Calendar.getInstance().get(Calendar.MONTH) + 1,
+                        1,
+                        12,
+                        1));
+        spinner2 = new JSpinner(new SpinnerNumberModel(
+                        Calendar.getInstance().get(Calendar.YEAR),
+                        1900,
+                        2200,
+                        1));
     }
 }

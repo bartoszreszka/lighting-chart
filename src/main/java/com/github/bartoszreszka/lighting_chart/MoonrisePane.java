@@ -7,8 +7,8 @@ import static com.github.bartoszreszka.lighting_chart.Computations.*;
 
 public class MoonrisePane extends APane {
     @Override
-    protected void drawPane(Graphics g, Color backgroundColor, Color fontColor, Font font) {
-        setColor(g, backgroundColor, fontColor, font);
+    protected void drawPane(Graphics g, Color backgroundColor, Color drawColor, Font font) {
+        setColor(g, backgroundColor, drawColor, font);
         int i = 0;
         for (Day day : month.days) {
             StringBuilder sb = new StringBuilder();

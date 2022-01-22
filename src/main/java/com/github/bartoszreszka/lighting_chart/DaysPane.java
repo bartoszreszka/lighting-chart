@@ -7,8 +7,8 @@ import static com.github.bartoszreszka.lighting_chart.Computations.month;
 public class DaysPane extends APane {
 
     @Override
-    protected void drawPane(Graphics g, Color backgroundColor, Color fontColor, Font font) {
-        setColor(g, backgroundColor, fontColor, font);
+    protected void drawPane(Graphics g, Color backgroundColor, Color drawColor, Font font) {
+        setColor(g, backgroundColor, drawColor, font);
         int i = 0;
         for (Day day : month.days) {
             g.drawString(String.valueOf(day.getZonedDateTime().getDayOfMonth()),

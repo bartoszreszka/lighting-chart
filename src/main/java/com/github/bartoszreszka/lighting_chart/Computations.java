@@ -1,5 +1,6 @@
 package com.github.bartoszreszka.lighting_chart;
 
+import org.shredzone.commons.suncalc.MoonPhase;
 import org.shredzone.commons.suncalc.MoonTimes;
 import org.shredzone.commons.suncalc.SunTimes;
 
@@ -18,8 +19,8 @@ public class Computations {
         calculateMoonTimesInMonth();
     }
     
-    static String printReport() {
-        return printTimesReport();
+    static String report() {
+        return timesReport();
     }
 
     static boolean occurs(ZonedDateTime phenomenonOccurrenceZonedDateTime, Day day) {
@@ -29,34 +30,60 @@ public class Computations {
         return isSameDay(day.getZonedDateTime(), phenomenonOccurrenceZonedDateTime);
     }
 
-    static int getHourOf (Phenomena phenomenon, Day day) {
+    // Replaced with APane.getHourOf(...)
+//    static int getHourOf (Phenomena phenomenon, Day day) {
+//        switch (phenomenon) {
+//            case SUNRISE:
+//                return occurs(day.sunTimes.getRise(), day) ? day.sunTimes.getRise().getHour() : -1;
+//            case SUNSET:
+//                return occurs(day.sunTimes.getSet(), day) ? day.sunTimes.getSet().getHour() : -1;
+//            case MOONRISE:
+//                return occurs(day.moonTimes.getRise(), day) ? day.moonTimes.getRise().getHour() : -1;
+//            case MOONSET:
+//                return occurs(day.moonTimes.getSet(), day) ? day.moonTimes.getSet().getHour() : -1;
+//            default:
+//                return -1;
+//        }
+//    }
+
+    // Replaced with APane.getMinutesOf(...)
+//    static int getMinutesOf (Phenomena phenomenon, Day day) {
+//        switch (phenomenon) {
+//            case SUNRISE:
+//                return occurs(day.sunTimes.getRise(), day) ? day.sunTimes.getRise().getMinute() : -1;
+//            case SUNSET:
+//                return occurs(day.sunTimes.getSet(), day) ? day.sunTimes.getSet().getMinute() : -1;
+//            case MOONRISE:
+//                return occurs(day.moonTimes.getRise(), day) ? day.moonTimes.getRise().getMinute() : -1;
+//            case MOONSET:
+//                return occurs(day.moonTimes.getSet(), day) ? day.moonTimes.getSet().getMinute() : -1;
+//            default:
+//                return -1;
+//        }
+//    }
+
+    static ZonedDateTime getDateTimeOf (Phenomena phenomenon, Day day) {
         switch (phenomenon) {
             case SUNRISE:
-                return occurs(day.sunTimes.getRise(), day) ? day.sunTimes.getRise().getHour() : -1;
+                return occurs(day.sunTimes.getRise(), day) ? day.sunTimes.getRise() : null;
             case SUNSET:
-                return occurs(day.sunTimes.getSet(), day) ? day.sunTimes.getSet().getHour() : -1;
+                return occurs(day.sunTimes.getSet(), day) ? day.sunTimes.getSet() : null;
             case MOONRISE:
-                return occurs(day.moonTimes.getRise(), day) ? day.moonTimes.getRise().getHour() : -1;
+                return occurs(day.moonTimes.getRise(), day) ? day.moonTimes.getRise() : null;
             case MOONSET:
-                return occurs(day.moonTimes.getSet(), day) ? day.moonTimes.getSet().getHour() : -1;
+                return occurs(day.moonTimes.getSet(), day) ? day.moonTimes.getSet() : null;
             default:
-                return -1;
+                return null;
         }
     }
 
-    static int getMinutesOf (Phenomena phenomenon, Day day) {
-        switch (phenomenon) {
-            case SUNRISE:
-                return occurs(day.sunTimes.getRise(), day) ? day.sunTimes.getRise().getMinute() : -1;
-            case SUNSET:
-                return occurs(day.sunTimes.getSet(), day) ? day.sunTimes.getSet().getMinute() : -1;
-            case MOONRISE:
-                return occurs(day.moonTimes.getRise(), day) ? day.moonTimes.getRise().getMinute() : -1;
-            case MOONSET:
-                return occurs(day.moonTimes.getSet(), day) ? day.moonTimes.getSet().getMinute() : -1;
-            default:
-                return -1;
-        }
+    static ZonedDateTime dayOfMoonPhase (MoonPhase.Phase moonPhase, Month month) {
+        return MoonPhase.compute()
+                .on(month.days.get(0)
+                .getZonedDateTime())
+                .phase(moonPhase)
+                .execute()
+                .getTime();
     }
 
     private static void calculateSunTimesInMonth() {
@@ -77,7 +104,7 @@ public class Computations {
         }
     }
 
-    private static String printLocationName() {
+    private static String locationName() {
         StringBuilder sb = new StringBuilder();
         Formatter f = new Formatter(sb);
         if (!(location.locName().isEmpty())) {
@@ -91,19 +118,20 @@ public class Computations {
         return String.valueOf(sb);
     }
 
-    private static String printTimesReport() {
-        StringBuilder sb = new StringBuilder(printLocationName() + "\n");
+    private static String timesReport() {
+        StringBuilder sb = new StringBuilder(locationName() + "\n");
         Formatter f = new Formatter(sb);
+        APane aPane = new APane() {};
         for (Day day : month.days) {
-            f.format(day + "\nSunrise %02d:%02d | Moonrise %02d:%02d\nSunset  %02d:%02d | MoonsetPane  %02d:%02d\n"
-                    ,getHourOf(Phenomena.SUNRISE, day)
-                    ,getMinutesOf(Phenomena.SUNRISE, day)
-                    ,getHourOf(Phenomena.MOONRISE, day)
-                    ,getMinutesOf(Phenomena.MOONRISE, day)
-                    ,getHourOf(Phenomena.SUNSET, day)
-                    ,getMinutesOf(Phenomena.SUNSET, day)
-                    ,getHourOf(Phenomena.MOONSET, day)
-                    ,getMinutesOf(Phenomena.MOONSET, day)
+            f.format(day + "\nSunrise %02d:%02d | Moonrise %02d:%02d\nSunset  %02d:%02d | Moonset  %02d:%02d\n"
+                    ,aPane.getHourOf(Phenomena.SUNRISE, day)
+                    ,aPane.getMinutesOf(Phenomena.SUNRISE, day)
+                    ,aPane.getHourOf(Phenomena.MOONRISE, day)
+                    ,aPane.getMinutesOf(Phenomena.MOONRISE, day)
+                    ,aPane.getHourOf(Phenomena.SUNSET, day)
+                    ,aPane.getMinutesOf(Phenomena.SUNSET, day)
+                    ,aPane.getHourOf(Phenomena.MOONSET, day)
+                    ,aPane.getMinutesOf(Phenomena.MOONSET, day)
             );
         }
         return String.valueOf(sb);
