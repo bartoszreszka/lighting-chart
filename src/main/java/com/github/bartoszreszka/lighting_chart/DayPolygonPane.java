@@ -65,6 +65,7 @@ public class DayPolygonPane extends JPanel {
 
     private void drawDayPolygon(Graphics g, Color backgroundColor, Color dayColor) {
         setBackground(backgroundColor);
+        g.translate(0,Chart.dayHeightInPixels/4);
         g.setColor(dayColor);
         g.fillPolygon(dayPolygon);
     }

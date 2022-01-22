@@ -8,11 +8,14 @@ public class Chart extends JDialog {
     static int dayHeightInPixels;
     static int hourWidthInPixels;
     static int fontHeight;
+    static int moonSize;
     static Font font;
     static Color backgroundColor;
     static Color dayColor;
     static Color textBackgroundColor;
     static Color textColor;
+    static Color moonColorBright;
+    static Color moonColorDark;
     private JPanel contentPane;
     private JPanel titlePane;
     private JPanel rulerPane;
@@ -39,6 +42,9 @@ public class Chart extends JDialog {
         dayColor = Color.WHITE;
         textBackgroundColor = null;
         textColor = Color.BLACK;
+        moonColorBright = Color.YELLOW;
+        moonColorDark = Color.DARK_GRAY;
+        moonSize = 20;
     }
 
     public Chart() {
@@ -89,6 +95,7 @@ public class Chart extends JDialog {
         sunsetPane.add(new SunsetPane());
         moonrisePane.add(new MoonrisePane());
         moonsetPane.add(new MoonsetPane());
+        moonphasePane.add(new MoonphasePane());
         // Fixed size in form file has been set: rulerPane 1440, daysPaneLeft 600.
 //        setSize(dpp.getWidth(), dpp.getHeight() + 80);
         pack();
