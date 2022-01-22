@@ -51,7 +51,7 @@ public class Chart extends JDialog {
         setTitle("Grafik Oświetlenia.");
         setContentPane(contentPane);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        setResizable(true);
+        setResizable(false);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
         setVisible(true);
