@@ -16,7 +16,7 @@ public class MoonphasePane extends APane {
     protected void drawPane(Graphics g, Color backgroundColor, Color drawColor, Font font) {
         setColor(g, backgroundColor, drawColor, font);
         g.translate(0, -(Chart.moonSize/3));
-        g.drawOval(
+        g.fillOval(
                 0,
                 Chart.dayHeightInPixels * getDayValueOf(MoonPhase.Phase.NEW_MOON, Computations.month),
                 Chart.moonSize,
@@ -26,11 +26,21 @@ public class MoonphasePane extends APane {
                 Chart.dayHeightInPixels * getDayValueOf(MoonPhase.Phase.FIRST_QUARTER, Computations.month),
                 Chart.moonSize,
                 Chart.moonSize,
-                270,
+                90,
                 180);
-        g.fillOval(
+        g.drawOval(
+                0,
+                Chart.dayHeightInPixels * getDayValueOf(MoonPhase.Phase.FIRST_QUARTER, Computations.month),
+                Chart.moonSize,
+                Chart.moonSize);
+        g.drawOval(
                 0,
                 Chart.dayHeightInPixels * getDayValueOf(MoonPhase.Phase.FULL_MOON, Computations.month),
+                Chart.moonSize,
+                Chart.moonSize);
+        g.drawOval(
+                0,
+                Chart.dayHeightInPixels * getDayValueOf(MoonPhase.Phase.LAST_QUARTER, Computations.month),
                 Chart.moonSize,
                 Chart.moonSize);
         g.fillArc(
@@ -38,7 +48,7 @@ public class MoonphasePane extends APane {
                 Chart.dayHeightInPixels * getDayValueOf(MoonPhase.Phase.LAST_QUARTER, Computations.month),
                 Chart.moonSize,
                 Chart.moonSize,
-                90,
+                270,
                 180);
     }
 
