@@ -8,8 +8,10 @@ public class Chart extends JDialog {
     static int dayHeightInPixels;
     static int hourWidthInPixels;
     static int fontHeight;
+    static int titleFontHeight;
     static int moonSize;
     static Font font;
+    static Font titleFont;
     static Color backgroundColor;
     static Color dayColor;
     static Color textBackgroundColor;
@@ -31,13 +33,16 @@ public class Chart extends JDialog {
     private JPanel buttonPane;
     private JButton buttonOK;
     private JButton buttonPrint;
+    private JPanel hoursPane;
+    private JLabel titleLabel;
 
     static {
         dayHeightInPixels = 20;
         hourWidthInPixels = 60;
         fontHeight = 16;
-//        font = new Font("Arial", Font.PLAIN, fontHeight);
+        titleFontHeight = 24;
         font = null;
+        titleFont = new Font("Arial", Font.BOLD, titleFontHeight);
         backgroundColor = Color.BLUE;
         dayColor = Color.WHITE;
         textBackgroundColor = null;
@@ -84,6 +89,13 @@ public class Chart extends JDialog {
         dispose();
     }
 
+    private void setTitleLabel () {
+        String titleString = "Grafik oświetlenia dla " + Computations.location.locName();
+        titleLabel.setFont(titleFont);
+        titleLabel.setText(titleString);
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    }
+
     private void loadAllPanes() {
         Computations.execute();
 
@@ -96,7 +108,10 @@ public class Chart extends JDialog {
         moonrisePane.add(new MoonrisePane());
         moonsetPane.add(new MoonsetPane());
         moonphasePane.add(new MoonphasePane());
-        // Fixed size in form file has been set: rulerPane 1440, daysPaneLeft 600.
+        rulerPane.add(new RulerPane());
+        hoursPane.add(new HoursPane());
+        setTitleLabel();
+                // Fixed size in form file has been set: rulerPane 1440, daysPaneLeft 600.
 //        setSize(dpp.getWidth(), dpp.getHeight() + 80);
         pack();
         setLocationRelativeTo(null);
