@@ -200,7 +200,7 @@
                 </constraints>
                 <properties>
                   <text value="Drukuj"/>
-                  <visible value="false"/>
+                  <visible value="true"/>
                 </properties>
               </component>
             </children>

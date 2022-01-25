@@ -81,7 +81,7 @@ public class Chart extends JDialog {
     }
 
     private void onPrint() {
-        loadAllPanes();
+        new Printer(getRootPane().getComponent(0));
     }
 
     private void onOK() {
