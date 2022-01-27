@@ -1,10 +1,7 @@
 package com.github.bartoszreszka.lighting_chart;
 
 import java.awt.*;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
+import java.awt.print.*;
 
 public class Printer implements Printable {
 
@@ -50,14 +47,15 @@ public class Printer implements Printable {
         PrinterJob pjob = PrinterJob.getPrinterJob();
         PageFormat preformat = pjob.defaultPage();
         preformat.setOrientation(PageFormat.LANDSCAPE);
-        PageFormat postformat = pjob.pageDialog(preformat);
-        //If user does not hit cancel then print.
-        if (preformat != postformat) {
-            //Set print component
-            pjob.setPrintable(new Printer(component), postformat);
+        Paper paper = new Paper();
+        paper.setSize(594, 846);
+        preformat.setPaper(paper);
+//        PageFormat postformat = pjob.pageDialog(preformat);
+//        if (preformat != postformat) {
+            pjob.setPrintable(this, preformat); // Change to postformat if pageDialog() is used.
             if (pjob.printDialog()) {
                 pjob.print();
             }
-        }
+//        }
     }
 }
