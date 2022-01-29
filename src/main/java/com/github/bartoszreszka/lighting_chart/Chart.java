@@ -13,6 +13,7 @@ public class Chart extends JDialog {
     static Font font;
     static Font titleFont;
     static Color backgroundColor;
+    static Color nightColor;
     static Color dayColor;
     static Color textBackgroundColor;
     static Color textColor;
@@ -21,6 +22,7 @@ public class Chart extends JDialog {
     private JPanel contentPane;
     private JPanel titlePane;
     private JPanel rulerPane;
+    private JPanel hoursPane;
     private JPanel chartPane;
     private JPanel dayPolygonPane;
     private JPanel daysPaneLeft;
@@ -33,7 +35,6 @@ public class Chart extends JDialog {
     private JPanel buttonPane;
     private JButton buttonOK;
     private JButton buttonPrint;
-    private JPanel hoursPane;
     private JLabel titleLabel;
 
     static {
@@ -43,7 +44,8 @@ public class Chart extends JDialog {
         titleFontHeight = 24;
         font = null;
         titleFont = new Font("Arial", Font.BOLD, titleFontHeight);
-        backgroundColor = Color.BLUE;
+        backgroundColor = Color.WHITE;
+        nightColor = Color.BLUE;
         dayColor = Color.WHITE;
         textBackgroundColor = null;
         textColor = Color.BLACK;
@@ -110,6 +112,9 @@ public class Chart extends JDialog {
         moonphasePane.add(new MoonphasePane());
         rulerPane.add(new RulerPane());
         hoursPane.add(new HoursPane());
+        titlePane.setBackground(backgroundColor);
+        chartPane.setBackground(backgroundColor);
+        buttonPane.setBackground(backgroundColor);
         setTitleLabel();
                 // Fixed size in form file has been set: rulerPane 1440, daysPaneLeft 600.
 //        setSize(dpp.getWidth(), dpp.getHeight() + 80);

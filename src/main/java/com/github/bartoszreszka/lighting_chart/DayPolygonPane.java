@@ -24,7 +24,7 @@ public class DayPolygonPane extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         createDayPolygon();
-        drawDayPolygon(g, Chart.backgroundColor, Chart.dayColor);
+        drawDayPolygon(g, Chart.nightColor, Chart.dayColor);
     }
 
     private void createDayPolygon() {
