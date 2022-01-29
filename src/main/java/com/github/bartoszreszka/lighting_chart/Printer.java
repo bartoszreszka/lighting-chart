@@ -1,5 +1,6 @@
 package com.github.bartoszreszka.lighting_chart;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.print.*;
 
@@ -48,13 +49,23 @@ public class Printer implements Printable {
         PageFormat preformat = pjob.defaultPage();
         preformat.setOrientation(PageFormat.LANDSCAPE);
         Paper paper = new Paper();
-        paper.setSize(594, 846);
+//        paper.setSize(594, 846);
+        paper.setSize(400, 600);
         preformat.setPaper(paper);
 //        PageFormat postformat = pjob.pageDialog(preformat);
 //        if (preformat != postformat) {
             pjob.setPrintable(this, preformat); // Change to postformat if pageDialog() is used.
             if (pjob.printDialog()) {
-                pjob.print();
+                try {
+                    pjob.print();
+                } catch (PrinterAbortException e) {
+                } catch (PrinterException e) {
+                    JOptionPane.showMessageDialog(
+                            new JDialog(),
+                            e.toString() + "\n" + e.getMessage(),
+                            "Błąd drukowania.",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
 //        }
     }
