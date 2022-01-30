@@ -6,7 +6,7 @@
 
     <groupId>com.github.bartoszreszka</groupId>
     <artifactId>lighting-chart</artifactId>
-    <version>v0.2.1</version>
+    <version>v0.2.3</version>
 
     <dependencies>
         <dependency>

@@ -2,7 +2,11 @@ package com.github.bartoszreszka.lighting_chart;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Chart extends JDialog {
     static int dayHeightInPixels;
@@ -65,10 +69,7 @@ public class Chart extends JDialog {
         loadAllPanes();
 
         buttonOK.addActionListener(e -> onOK());
-
         buttonPrint.addActionListener(e -> onPrint());
-
-        // Call onOK() when ESC button pressed
         contentPane.registerKeyboardAction(
                 e -> onOK(),
                 KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
@@ -83,7 +84,7 @@ public class Chart extends JDialog {
     }
 
     private void onPrint() {
-        new Printer(getRootPane());
+        new Printer(contentPane);
     }
 
     private void onOK() {
@@ -91,8 +92,18 @@ public class Chart extends JDialog {
         dispose();
     }
 
-    private void setTitleLabel () {
-        String titleString = "Grafik oświetlenia dla " + Computations.location.locName();
+    private void exit() {
+        Main.gui.dispose();
+        dispose();
+    }
+
+    private void setTitleLabel() {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.MONTH, Main.gui.getMonthFromSpinner() - 1);
+        String titleString = String.format("Grafik oświetlenia %s dla %s %d.",
+                Computations.locationName(),
+                c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()),
+                Main.gui.getYearFromSpinner());
         titleLabel.setFont(titleFont);
         titleLabel.setText(titleString);
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -117,7 +128,7 @@ public class Chart extends JDialog {
         buttonPane.setBackground(backgroundColor);
         setTitleLabel();
         setUpMenu();
-                // Fixed size in form file has been set: rulerPane 1440, daysPaneLeft 600.
+//        Fixed size in form file has been set: rulerPane 1440, daysPaneLeft 600.
 //        setSize(dpp.getWidth(), dpp.getHeight() + 80);
         pack();
         setLocationRelativeTo(null);
@@ -127,11 +138,19 @@ public class Chart extends JDialog {
     private void setUpMenu() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Plik");
+        menu.setMnemonic(KeyEvent.VK_P);
+
         JMenuItem printChart = new JMenuItem("Drukuj");
+        printChart.setMnemonic(KeyEvent.VK_D);
         printChart.addActionListener(e -> onPrint());
+
+        JMenuItem exit = new JMenuItem("Wyjdź");
+        exit.setMnemonic(KeyEvent.VK_W);
+        exit.addActionListener(e -> exit());
+
         menu.add(printChart);
+        menu.add(exit);
         menuBar.add(menu);
         this.setJMenuBar(menuBar);
     }
-
 }
