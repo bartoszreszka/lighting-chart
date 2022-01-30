@@ -15,7 +15,7 @@ abstract class APane extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawPane(g, Chart.textBackgroundColor, Chart.textColor, Chart.font);
+        drawPane(g, Chart.backgroundColor, Chart.textColor, Chart.font);
     }
 
     // TODO: 22.01.2022 Create methods drawPane and setColor with less parameters e.g. w/o font. 
