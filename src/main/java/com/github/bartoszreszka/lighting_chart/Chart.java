@@ -116,10 +116,22 @@ public class Chart extends JDialog {
         chartPane.setBackground(backgroundColor);
         buttonPane.setBackground(backgroundColor);
         setTitleLabel();
+        setUpMenu();
                 // Fixed size in form file has been set: rulerPane 1440, daysPaneLeft 600.
 //        setSize(dpp.getWidth(), dpp.getHeight() + 80);
         pack();
         setLocationRelativeTo(null);
         contentPane.revalidate();
     }
+
+    private void setUpMenu() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("Plik");
+        JMenuItem printChart = new JMenuItem("Drukuj");
+        printChart.addActionListener(e -> onPrint());
+        menu.add(printChart);
+        menuBar.add(menu);
+        this.setJMenuBar(menuBar);
+    }
+
 }
