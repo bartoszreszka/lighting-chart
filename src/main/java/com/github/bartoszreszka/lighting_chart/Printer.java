@@ -39,12 +39,12 @@ public class Printer implements Printable {
         Graphics2D g2 = (Graphics2D) g;
         g2.translate(pXStart, pYStart);
         g2.scale(xRatio, yRatio);
-        component.printAll(g2);
+        component.print(g2);
 
         return Printable.PAGE_EXISTS;
     }
 
-    void printChart (Component component) throws PrinterException {
+    void printChart(Component component) throws PrinterException {
         PrinterJob pjob = PrinterJob.getPrinterJob();
         PageFormat preformat = pjob.defaultPage();
         preformat.setOrientation(PageFormat.LANDSCAPE);
@@ -54,19 +54,20 @@ public class Printer implements Printable {
         preformat.setPaper(paper);
 //        PageFormat postformat = pjob.pageDialog(preformat);
 //        if (preformat != postformat) {
-            pjob.setPrintable(this, preformat); // Change to postformat if pageDialog() is used.
-            if (pjob.printDialog()) {
-                try {
-                    pjob.print();
-                } catch (PrinterAbortException e) {
-                } catch (PrinterException e) {
-                    JOptionPane.showMessageDialog(
-                            new JDialog(),
-                            e.toString() + "\n" + e.getMessage(),
-                            "Błąd drukowania.",
-                            JOptionPane.ERROR_MESSAGE);
-                }
+        pjob.setPrintable(this, preformat); // Change to postformat if pageDialog() is used.
+        if (pjob.printDialog()) {
+            try {
+                pjob.setJobName("Grafik oswietlenia");
+                pjob.print();
+            } catch (PrinterAbortException e) {
+            } catch (PrinterException e) {
+                JOptionPane.showMessageDialog(
+                        new JDialog(),
+                        e.getMessage(),
+                        "Błąd drukowania.",
+                        JOptionPane.ERROR_MESSAGE);
             }
+        }
 //        }
     }
 }

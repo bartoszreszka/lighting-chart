@@ -104,16 +104,16 @@ public class Computations {
         }
     }
 
-    private static String locationName() {
+    static String locationName() {
         StringBuilder sb = new StringBuilder();
         Formatter f = new Formatter(sb);
         if (!(location.locName().isEmpty())) {
-            f.format("***   " + location.locName() + "   ***");
+            f.format(location.locName());
         } else {
             char phi = 966,
                 lambda = 955,
                 deg = 176;
-            f.format(Locale.US, "***   %3$c = %05.2f%5$c %4$c = %06.2f%5$c   ***\n", location.lat(), location.lng(), phi, lambda, deg);
+            f.format(Locale.US, "%3$c = %05.2f%5$c %4$c = %06.2f%5$c", location.lat(), location.lng(), phi, lambda, deg);
         }
         return String.valueOf(sb);
     }

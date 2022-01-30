@@ -73,7 +73,15 @@ public class GUI extends JDialog {
     }
 
     private Month parseMonthAndYearFromSpinners() {
-        return new Month((Integer)spinner2.getValue(), (Integer)spinner1.getValue());
+        return new Month(getYearFromSpinner(), getMonthFromSpinner());
+    }
+
+    Integer getYearFromSpinner() {
+        return (Integer) spinner2.getValue();
+    }
+
+    Integer getMonthFromSpinner() {
+        return (Integer) spinner1.getValue();
     }
 
     private Location parseCoordsFromTextFields() {
