@@ -99,8 +99,9 @@ public class Chart extends JDialog {
 
     private void setTitleLabel() {
         Calendar c = Calendar.getInstance();
+        c.set(Calendar.DAY_OF_MONTH, 15); // Prevents unintended behaviour.
         c.set(Calendar.MONTH, Main.gui.getMonthFromSpinner() - 1);
-        String titleString = String.format("Grafik oświetlenia %s dla %s %d.",
+        String titleString = String.format("Grafik oświetlenia %s dla %s %d roku",
                 Computations.locationName(),
                 c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()),
                 Main.gui.getYearFromSpinner());
