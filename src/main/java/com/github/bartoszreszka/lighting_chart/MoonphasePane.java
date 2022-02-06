@@ -7,11 +7,6 @@ import java.time.ZonedDateTime;
 
 public class MoonphasePane extends APane {
 
-    private Shape newMoon,
-                  firstQuarter,
-                  fullMoon,
-                  lastQuarter;
-
     @Override
     protected void drawPane(Graphics g, Color backgroundColor, Color drawColor, Font font) {
         setColor(g, backgroundColor, drawColor, font);
