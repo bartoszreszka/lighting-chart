@@ -82,7 +82,9 @@ public class DayPolygonPane extends APane {
         for (Day day : month.days) {
             drawMoon(g,
                     moonColorBright,
-                    hourWidthInPixels * getHourOf(Phenomena.MOONRISE, day) + ((hourWidthInPixels / 60) * getMinutesOf(Phenomena.MOONRISE, day)),
+                    hourWidthInPixels * getHourOf(Phenomena.MOONRISE, day)
+                            + ((hourWidthInPixels / 60) * getMinutesOf(Phenomena.MOONRISE, day))
+                            - (moonSize / 2),
                     i * dayHeightInPixels - (moonSize / 2));
             i++;
         }
@@ -90,7 +92,9 @@ public class DayPolygonPane extends APane {
         for (Day day : month.days) {
             drawMoon(g,
                     moonColorDark,
-                    hourWidthInPixels * getHourOf(Phenomena.MOONSET, day) + ((hourWidthInPixels / 60) * getMinutesOf(Phenomena.MOONSET, day)),
+                    hourWidthInPixels * getHourOf(Phenomena.MOONSET, day)
+                            + ((hourWidthInPixels / 60) * getMinutesOf(Phenomena.MOONSET, day))
+                            - (moonSize / 2),
                     i * dayHeightInPixels - (moonSize / 2));
             i++;
         }
