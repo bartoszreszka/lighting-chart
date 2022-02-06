@@ -130,13 +130,13 @@ public class GUI extends JDialog {
     private void printToStandardOutput() {
         System.out.println(Computations
                 .report());
-        System.out.println(Computations
+        System.out.printf("Nów: %tc%n", Computations
                 .dayOfMoonPhase(MoonPhase.Phase.NEW_MOON, Computations.month));
-        System.out.println(Computations
+        System.out.printf("Pierwsza kwadra: %tc%n", Computations
                 .dayOfMoonPhase(MoonPhase.Phase.FIRST_QUARTER, Computations.month));
-        System.out.println(Computations
+        System.out.printf("Pełnia: %tc%n", Computations
                 .dayOfMoonPhase(MoonPhase.Phase.FULL_MOON, Computations.month));
-        System.out.println(Computations
+        System.out.printf("Ostatnia kwadra: %tc%n", Computations
                 .dayOfMoonPhase(MoonPhase.Phase.LAST_QUARTER, Computations.month));
     }
 
