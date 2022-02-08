@@ -48,11 +48,13 @@ public class Printer implements Printable {
         PrinterJob pjob = PrinterJob.getPrinterJob();
         PageFormat preformat = pjob.defaultPage();
         preformat.setOrientation(PageFormat.LANDSCAPE);
-        Paper paper = new Paper();
-//        paper.setSize(594, 846);
-        paper.setSize(400, 600);
+        Paper paper = preformat.getPaper();
+        paper.setSize(594, 846);
+        paper.setImageableArea(25, 25, 544, 796);
         preformat.setPaper(paper);
-//        PageFormat postformat = pjob.pageDialog(preformat);
+        preformat = pjob.validatePage(preformat);
+
+//        PageFormat postformat = pjob.pageDialog(preformat); // Uncomment to enable page size dialog before printing.
 //        if (preformat != postformat) {
         pjob.setPrintable(this, preformat); // Change to postformat if pageDialog() is used.
         if (pjob.printDialog()) {
@@ -68,6 +70,6 @@ public class Printer implements Printable {
                         JOptionPane.ERROR_MESSAGE);
             }
         }
-//        }
+//    }
     }
 }
