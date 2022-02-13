@@ -1,5 +1,7 @@
 package com.github.bartoszreszka.lighting_chart;
 
+import javax.swing.*;
+
 /**
  * Program calculates and generates "lighting chart" for following phenomenons in a given month:
  * <ul>
@@ -19,6 +21,6 @@ public class Main {
     static GUI gui;
 
     public static void main(String[] args) {
-        gui = new GUI();
+        SwingUtilities.invokeLater(() -> gui = new GUI());
     }
 }
