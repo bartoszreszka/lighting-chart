@@ -4,7 +4,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 
 /**
- * Class representing a set of {@link Day}s - usually a month.
+ * Represents a list of {@link Day}s.
  */
 class Month {
     int lengthOfMonth,

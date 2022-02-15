@@ -8,8 +8,7 @@ import java.time.ZonedDateTime;
 public class MoonphasePane extends APane {
 
     @Override
-    protected void drawPane(Graphics g, Color backgroundColor, Color drawColor, Font font) {
-        setColor(g, backgroundColor, drawColor, font);
+    protected void drawPane(Graphics g) {
         g.translate(0, -(Chart.moonSize/3));
         newMoon(g);
         firstQuarter(g);
@@ -65,7 +64,7 @@ public class MoonphasePane extends APane {
 
 
     private int getDayValueOf(MoonPhase.Phase moonPhase, Month month) {
-        ZonedDateTime zdt = Computations.dayOfMoonPhase(moonPhase, Computations.month);
+        ZonedDateTime zdt = Computations.dateAndTimeOfMoonPhaseInGivenMonth(moonPhase, Computations.month);
         if (zdt.getMonthValue() == Computations.month.value) {
             return zdt.getDayOfMonth() - 1;
         } else {

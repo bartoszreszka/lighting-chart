@@ -5,8 +5,7 @@ import java.awt.*;
 public class RulerPane extends APane {
 
     @Override
-    protected void drawPane(Graphics g, Color backgroundColor, Color drawColor, Font font) {
-        setColor(g, backgroundColor, drawColor, font);
+    protected void drawPane(Graphics g) {
         for (int i = 0; i <= 6; i++) {
             g.drawLine(Chart.hourWidthInPixels * i * 4, 10, Chart.hourWidthInPixels * i * 4, 15);
         }

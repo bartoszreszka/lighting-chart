@@ -112,7 +112,6 @@ public class Chart extends JDialog {
 
     private void loadAllPanes() {
         Computations.execute();
-
         sunrisePane.add(new SunrisePane());
         daysPaneLeft.add(new DaysPane());
         DayPolygonPane dpp = new DayPolygonPane();
@@ -129,8 +128,7 @@ public class Chart extends JDialog {
         buttonPane.setBackground(backgroundColor);
         setTitleLabel();
         setUpMenu();
-//        Fixed size in form file has been set: rulerPane 1440, daysPaneLeft 600.
-//        setSize(dpp.getWidth(), dpp.getHeight() + 80);
+        setSize(dpp.getWidth(), dpp.getHeight() + 80); // Fixed size in form file has been set: rulerPane 1440, daysPaneLeft 600.
         pack();
         setLocationRelativeTo(null);
         contentPane.revalidate();

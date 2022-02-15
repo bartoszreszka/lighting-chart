@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import static com.github.bartoszreszka.lighting_chart.Chart.*;
+import static com.github.bartoszreszka.lighting_chart.Computations.doesPhenomenonOccursOnGivenDay;
 import static com.github.bartoszreszka.lighting_chart.Computations.month;
-import static com.github.bartoszreszka.lighting_chart.Computations.occurs;
 
 public class DayPolygonPane extends APane {
 
@@ -17,15 +17,17 @@ public class DayPolygonPane extends APane {
     public DayPolygonPane() {
         panelWidth = 24 * hourWidthInPixels;
         panelHeight = month.lengthOfMonth * dayHeightInPixels;
-//        setSize(panelWidth, panelHeight);
         repaint();
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    protected void drawPane(Graphics g) {
+        g.translate(0, dayHeightInPixels/4);
         createDayPolygon();
-        drawDayPolygon(g, nightColor, dayColor);
+        setColorsAndFont(g, nightColor, dayColor, null);
+        g.fillPolygon(dayPolygon);
+        drawMoonSymbols(g, Phenomena.MOONRISE, moonColorBright, textColor);
+        drawMoonSymbols(g, Phenomena.MOONSET, moonColorDark, textColor);
     }
 
     private void createDayPolygon() {
@@ -33,7 +35,7 @@ public class DayPolygonPane extends APane {
         int i = 0;
 
         for (Day day : month.days) {
-            if (occurs(day.sunTimes.getRise(), day)) {
+            if (doesPhenomenonOccursOnGivenDay(day.sunTimes.getRise(), day)) {
                 try {
                     dayPolygon.addPoint(day.sunTimes.getRise().getHour() * hourWidthInPixels + day.sunTimes.getRise().getMinute(), i);
                 } catch (NullPointerException npe) {
@@ -52,7 +54,7 @@ public class DayPolygonPane extends APane {
 
         for (Day day : reversedDays) {
             i -= dayHeightInPixels;
-            if (occurs(day.sunTimes.getRise(), day)) {
+            if (doesPhenomenonOccursOnGivenDay(day.sunTimes.getRise(), day)) {
                 try {
                     dayPolygon.addPoint(day.sunTimes.getSet().getHour() * hourWidthInPixels + day.sunTimes.getSet().getMinute(), i);
                 } catch (NullPointerException npe) {
@@ -64,8 +66,8 @@ public class DayPolygonPane extends APane {
         }
     }
 
-    private void drawMoon(Graphics g, Color fillColor, int x, int y) {
-        g.setColor(textColor);
+    private void drawMoon(Graphics g, Color fillColor, Color drawColor, int x, int y) {
+        g.setColor(drawColor);
         g.drawOval(x,
                 y,
                 moonSize,
@@ -77,34 +79,17 @@ public class DayPolygonPane extends APane {
                 moonSize);
     }
 
-    private void drawMoonRisesAndMoonSets(Graphics g) {
+    private void drawMoonSymbols(Graphics g, Phenomena phenomena, Color fillColor, Color drawColor) {
         int i = 0;
         for (Day day : month.days) {
             drawMoon(g,
-                    moonColorBright,
-                    hourWidthInPixels * getHourOf(Phenomena.MOONRISE, day)
-                            + ((hourWidthInPixels / 60) * getMinutesOf(Phenomena.MOONRISE, day))
+                    fillColor,
+                    drawColor,
+                    hourWidthInPixels * getHourOf(phenomena, day)
+                            + ((hourWidthInPixels / 60) * getMinutesOf(phenomena, day))
                             - (moonSize / 2),
                     i * dayHeightInPixels - (moonSize / 2));
             i++;
         }
-        i = 0;
-        for (Day day : month.days) {
-            drawMoon(g,
-                    moonColorDark,
-                    hourWidthInPixels * getHourOf(Phenomena.MOONSET, day)
-                            + ((hourWidthInPixels / 60) * getMinutesOf(Phenomena.MOONSET, day))
-                            - (moonSize / 2),
-                    i * dayHeightInPixels - (moonSize / 2));
-            i++;
-        }
-    }
-
-    private void drawDayPolygon(Graphics g, Color backgroundColor, Color dayColor) {
-        setBackground(backgroundColor);
-        g.translate(0, dayHeightInPixels/4);
-        g.setColor(dayColor);
-        g.fillPolygon(dayPolygon);
-        drawMoonRisesAndMoonSets(g);
     }
 }

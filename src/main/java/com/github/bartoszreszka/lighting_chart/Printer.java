@@ -53,15 +53,12 @@ public class Printer implements Printable {
         paper.setImageableArea(25, 25, 544, 796);
         preformat.setPaper(paper);
         preformat = pjob.validatePage(preformat);
-
-//        PageFormat postformat = pjob.pageDialog(preformat); // Uncomment to enable page size dialog before printing.
-//        if (preformat != postformat) {
-        pjob.setPrintable(this, preformat); // Change to postformat if pageDialog() is used.
+        pjob.setPrintable(this, preformat);
         if (pjob.printDialog()) {
             try {
                 pjob.setJobName("Grafik oswietlenia");
                 pjob.print();
-            } catch (PrinterAbortException e) {
+            } catch (PrinterAbortException e) { // No action needed.
             } catch (PrinterException e) {
                 JOptionPane.showMessageDialog(
                         new JDialog(),
@@ -70,6 +67,5 @@ public class Printer implements Printable {
                         JOptionPane.ERROR_MESSAGE);
             }
         }
-//    }
     }
 }
