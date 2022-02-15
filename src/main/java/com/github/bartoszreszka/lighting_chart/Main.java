@@ -1,5 +1,7 @@
 package com.github.bartoszreszka.lighting_chart;
 
+import com.github.bartoszreszka.lighting_chart.guis.start.GUI;
+
 /**
  * Program calculates and generates "lighting chart" for following phenomenons in a given month:
  * <ul>
@@ -16,7 +18,7 @@ package com.github.bartoszreszka.lighting_chart;
  * */
 public class Main {
 
-    static GUI gui;
+    public static GUI gui;
 
     public static void main(String[] args) {
         gui = new GUI();
