@@ -33,11 +33,10 @@ public class GUI extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(600, 400);
         setResizable(false);
-        setLocationRelativeTo(null); // Startup position centered.
+        setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
         setVisible(true);
 
-        // Populates ComboBox with harbour names from Locations enum.
         predefinedHarboursComboBox.setModel(
                 new javax.swing.DefaultComboBoxModel<>(
                         Arrays.stream(Locations.values())
@@ -50,24 +49,6 @@ public class GUI extends JDialog {
                 onOK();
             }
         });
-
-//        // TODO: 02.10.2021 Does not call dispose(); ESC button being consumed by active text field / spinner.
-//        // Call dispose() when ESC button pressed
-//        contentPane.registerKeyboardAction(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                dispose();
-//            }
-//        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
-//        // Second approach to resolve the above problem. Does not work either.
-//        addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyReleased(KeyEvent e) {
-//                if  (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-//                    dispose();
-//                }
-//            }
-//        });
     }
 
     private void onOK() {

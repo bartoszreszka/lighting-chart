@@ -1,5 +1,6 @@
 package com.github.bartoszreszka.lighting_chart.guis.chart;
 
+import com.github.bartoszreszka.lighting_chart.commons.APane;
 import com.github.bartoszreszka.lighting_chart.computations.Day;
 
 import java.awt.*;

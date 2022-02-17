@@ -1,7 +1,7 @@
-package com.github.bartoszreszka.lighting_chart.guis.chart;
+package com.github.bartoszreszka.lighting_chart.commons;
 
 import com.github.bartoszreszka.lighting_chart.computations.Day;
-import com.github.bartoszreszka.lighting_chart.commons.Phenomena;
+import com.github.bartoszreszka.lighting_chart.guis.chart.Chart;
 
 import javax.swing.*;
 import java.awt.*;

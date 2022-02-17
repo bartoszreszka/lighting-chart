@@ -1,5 +1,6 @@
 package com.github.bartoszreszka.lighting_chart.guis.chart;
 
+import com.github.bartoszreszka.lighting_chart.commons.APane;
 import com.github.bartoszreszka.lighting_chart.computations.Computations;
 import com.github.bartoszreszka.lighting_chart.computations.Month;
 import org.shredzone.commons.suncalc.MoonPhase;

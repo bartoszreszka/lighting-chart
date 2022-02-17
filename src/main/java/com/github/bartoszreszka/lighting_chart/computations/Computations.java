@@ -2,7 +2,7 @@ package com.github.bartoszreszka.lighting_chart.computations;
 
 import com.github.bartoszreszka.lighting_chart.commons.Location;
 import com.github.bartoszreszka.lighting_chart.commons.Phenomena;
-import com.github.bartoszreszka.lighting_chart.guis.chart.APane;
+import com.github.bartoszreszka.lighting_chart.commons.APane;
 import org.shredzone.commons.suncalc.MoonPhase;
 import org.shredzone.commons.suncalc.MoonTimes;
 import org.shredzone.commons.suncalc.SunTimes;

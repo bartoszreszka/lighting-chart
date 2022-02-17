@@ -13,18 +13,18 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class Chart extends JDialog {
+    public static Font font;
+    public static Color backgroundColor;
+    public static Color textColor;
     static int dayHeightInPixels;
     static int hourWidthInPixels;
     static int fontHeight;
     static int titleFontHeight;
     static int moonSize;
-    static Font font;
     static Font titleFont;
-    static Color backgroundColor;
     static Color nightColor;
     static Color dayColor;
     static Color textBackgroundColor;
-    static Color textColor;
     static Color moonColorBright;
     static Color moonColorDark;
     private JPanel contentPane;
