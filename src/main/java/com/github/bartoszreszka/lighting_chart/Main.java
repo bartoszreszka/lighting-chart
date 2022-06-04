@@ -1,6 +1,6 @@
 package com.github.bartoszreszka.lighting_chart;
 
-import com.github.bartoszreszka.lighting_chart.guis.start.GUI;
+import com.github.bartoszreszka.lighting_chart.view.start.GUI;
 
 /**
  * Program calculates and generates "lighting chart" for following phenomenons in a given month:
