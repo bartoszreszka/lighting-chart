@@ -50,7 +50,7 @@ public class Printer implements Printable {
         preformat.setOrientation(PageFormat.LANDSCAPE);
         Paper paper = preformat.getPaper();
         paper.setSize(594, 846);
-        paper.setImageableArea(25, 25, 544, 796);
+        paper.setImageableArea(75, 25, 400, 796);
         preformat.setPaper(paper);
         preformat = pjob.validatePage(preformat);
         pjob.setPrintable(this, preformat);
