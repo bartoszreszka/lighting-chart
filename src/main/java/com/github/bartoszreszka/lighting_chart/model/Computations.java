@@ -116,10 +116,6 @@ public class Computations {
     }
 
     private static String timesReport() {
-        char sun = '\u2609',
-             moon = '\u263E',
-             rise = '\u2191',
-             set = '\u2193';
         StringBuilder sb = new StringBuilder(locationName() + "\n");
         Formatter f = new Formatter(sb);
         APane aPane = new APane() {
@@ -128,10 +124,10 @@ public class Computations {
             }
         };
         for (Day day : month.days) {
-            f.format(day + "\n" + rise + sun + " %02d:%02d | " +
-                            rise + moon + " %02d:%02d" +
-                           "\n" + set + sun + " %02d:%02d | " +
-                            set + moon + " %02d:%02d\n"
+            f.format(day + "\nWschód słońca    %02d:%02d | " +
+                            "Wschód księżyca  %02d:%02d" +
+                           "\nZachód słońca    %02d:%02d | " +
+                            "Zachód księżyca  %02d:%02d\n"
                     , aPane.getHourOf(Phenomena.SUNRISE, day)
                     , aPane.getMinutesOf(Phenomena.SUNRISE, day)
                     , aPane.getHourOf(Phenomena.MOONRISE, day)
