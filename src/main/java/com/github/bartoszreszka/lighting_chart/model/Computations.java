@@ -1,6 +1,5 @@
-package com.github.bartoszreszka.lighting_chart.controller;
+package com.github.bartoszreszka.lighting_chart.model;
 
-import com.github.bartoszreszka.lighting_chart.model.*;
 import org.shredzone.commons.suncalc.MoonPhase;
 import org.shredzone.commons.suncalc.MoonTimes;
 import org.shredzone.commons.suncalc.SunTimes;
@@ -117,6 +116,10 @@ public class Computations {
     }
 
     private static String timesReport() {
+        char sun = '\u2609',
+             moon = '\u263E',
+             rise = '\u2191',
+             set = '\u2193';
         StringBuilder sb = new StringBuilder(locationName() + "\n");
         Formatter f = new Formatter(sb);
         APane aPane = new APane() {
@@ -125,7 +128,10 @@ public class Computations {
             }
         };
         for (Day day : month.days) {
-            f.format(day + "\nSunrise %02d:%02d | Moonrise %02d:%02d\nSunset  %02d:%02d | Moonset  %02d:%02d\n"
+            f.format(day + "\n" + rise + sun + " %02d:%02d | " +
+                            rise + moon + " %02d:%02d" +
+                           "\n" + set + sun + " %02d:%02d | " +
+                            set + moon + " %02d:%02d\n"
                     , aPane.getHourOf(Phenomena.SUNRISE, day)
                     , aPane.getMinutesOf(Phenomena.SUNRISE, day)
                     , aPane.getHourOf(Phenomena.MOONRISE, day)

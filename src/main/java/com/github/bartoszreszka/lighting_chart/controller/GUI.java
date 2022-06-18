@@ -1,11 +1,7 @@
-package com.github.bartoszreszka.lighting_chart.view.start;
+package com.github.bartoszreszka.lighting_chart.controller;
 
-import com.github.bartoszreszka.lighting_chart.controller.Computations;
-import com.github.bartoszreszka.lighting_chart.model.LocationCoordinates;
-import com.github.bartoszreszka.lighting_chart.model.Month;
-import com.github.bartoszreszka.lighting_chart.model.Location;
-import com.github.bartoszreszka.lighting_chart.model.Locations;
-import com.github.bartoszreszka.lighting_chart.view.chart.Chart;
+import com.github.bartoszreszka.lighting_chart.model.*;
+import com.github.bartoszreszka.lighting_chart.view.Chart;
 import org.shredzone.commons.suncalc.MoonPhase;
 
 import javax.swing.*;
@@ -91,8 +87,8 @@ public class GUI extends JDialog {
                 lng = lngDeg + (lngMinutes / 60);
             } else {
                 // Parse degrees given in decimal format
-                lat = Double.parseDouble(latDegField.getText());
-                lng = Double.parseDouble(longDegField.getText());
+                lat = Double.parseDouble(latDegField.getText().replaceAll("[,]", "."));
+                lng = Double.parseDouble(longDegField.getText().replaceAll("[,]", "."));
             }
             if (!pointNameField.getText().isEmpty()) {
                 location = new LocationCoordinates(lat, lng, pointNameField.getText());

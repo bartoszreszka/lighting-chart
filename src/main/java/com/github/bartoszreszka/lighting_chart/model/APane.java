@@ -1,11 +1,11 @@
 package com.github.bartoszreszka.lighting_chart.model;
 
-import com.github.bartoszreszka.lighting_chart.view.chart.Chart;
+import com.github.bartoszreszka.lighting_chart.view.Chart;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static com.github.bartoszreszka.lighting_chart.controller.Computations.dateAndTimeOfPhenomenonOnGivenDay;
+import static com.github.bartoszreszka.lighting_chart.model.Computations.dateAndTimeOfPhenomenonOnGivenDay;
 
 public abstract class APane extends JPanel {
 

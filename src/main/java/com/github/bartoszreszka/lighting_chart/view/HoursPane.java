@@ -1,4 +1,4 @@
-package com.github.bartoszreszka.lighting_chart.view.chart;
+package com.github.bartoszreszka.lighting_chart.view;
 
 import com.github.bartoszreszka.lighting_chart.model.APane;
 
