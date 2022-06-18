@@ -18,7 +18,7 @@ public class Printer implements Printable {
     }
 
     @Override
-    public int print(Graphics g, PageFormat pageFormat, int pageIndex) throws PrinterException {
+    public int print(Graphics g, PageFormat pageFormat, int pageIndex) {
         if (pageIndex > 0) {
             return Printable.NO_SUCH_PAGE;
         }

@@ -1,11 +1,11 @@
-package com.github.bartoszreszka.lighting_chart.view.chart;
+package com.github.bartoszreszka.lighting_chart.view;
 
 import com.github.bartoszreszka.lighting_chart.model.APane;
 import com.github.bartoszreszka.lighting_chart.model.Day;
 
 import java.awt.*;
 
-import static com.github.bartoszreszka.lighting_chart.controller.Computations.getMonth;
+import static com.github.bartoszreszka.lighting_chart.model.Computations.getMonth;
 
 public class DaysPane extends APane {
 

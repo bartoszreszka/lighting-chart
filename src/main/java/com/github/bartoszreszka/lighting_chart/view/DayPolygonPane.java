@@ -1,4 +1,4 @@
-package com.github.bartoszreszka.lighting_chart.view.chart;
+package com.github.bartoszreszka.lighting_chart.view;
 
 import com.github.bartoszreszka.lighting_chart.model.APane;
 import com.github.bartoszreszka.lighting_chart.model.Day;
@@ -8,8 +8,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static com.github.bartoszreszka.lighting_chart.controller.Computations.*;
-import static com.github.bartoszreszka.lighting_chart.view.chart.Chart.*;
+import static com.github.bartoszreszka.lighting_chart.model.Computations.*;
+import static com.github.bartoszreszka.lighting_chart.view.Chart.*;
 
 public class DayPolygonPane extends APane {
 

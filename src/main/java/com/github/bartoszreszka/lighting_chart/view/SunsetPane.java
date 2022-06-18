@@ -1,4 +1,4 @@
-package com.github.bartoszreszka.lighting_chart.view.chart;
+package com.github.bartoszreszka.lighting_chart.view;
 
 import com.github.bartoszreszka.lighting_chart.model.APane;
 import com.github.bartoszreszka.lighting_chart.model.Day;
@@ -7,7 +7,7 @@ import com.github.bartoszreszka.lighting_chart.model.Phenomena;
 import java.awt.*;
 import java.util.Formatter;
 
-import static com.github.bartoszreszka.lighting_chart.controller.Computations.*;
+import static com.github.bartoszreszka.lighting_chart.model.Computations.*;
 
 public class SunsetPane extends APane {
 

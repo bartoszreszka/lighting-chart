@@ -1,6 +1,6 @@
-package com.github.bartoszreszka.lighting_chart.view.chart;
+package com.github.bartoszreszka.lighting_chart.view;
 
-import com.github.bartoszreszka.lighting_chart.controller.Computations;
+import com.github.bartoszreszka.lighting_chart.model.Computations;
 import com.github.bartoszreszka.lighting_chart.Main;
 import com.github.bartoszreszka.lighting_chart.controller.Printer;
 
