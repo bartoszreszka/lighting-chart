@@ -41,16 +41,14 @@ public class DayPolygonPane extends APane {
             if (doesPhenomenonOccursOnGivenDay(day.getSunTimes().getRise(), day)) {
                 try {
                     dayPolygon.addPoint(
-                            day.getSunTimes().getRise().getHour() * hourWidthInPixels + day.getSunTimes().getRise().getMinute(), i);
+                            day.getSunTimes().getRise().getHour() * hourWidthInPixels
+                                    + ((int) (day.getSunTimes().getRise().getMinute() * 0.0166d * hourWidthInPixels)),
+                            i);
                 } catch (NullPointerException npe) {
-                    dayPolygon.addPoint(
-                            0, i);
                 } finally {
                     i += dayHeightInPixels;
                 }
             } else {
-                dayPolygon.addPoint(
-                        0, i);
                 i += dayHeightInPixels;
             }
         }
@@ -63,14 +61,11 @@ public class DayPolygonPane extends APane {
             if (doesPhenomenonOccursOnGivenDay(day.getSunTimes().getRise(), day)) {
                 try {
                     dayPolygon.addPoint(
-                            day.getSunTimes().getSet().getHour() * hourWidthInPixels + day.getSunTimes().getSet().getMinute(), i);
+                            day.getSunTimes().getSet().getHour() * hourWidthInPixels
+                                    + ((int) (day.getSunTimes().getSet().getMinute() * 0.0166d * hourWidthInPixels)),
+                            i);
                 } catch (NullPointerException npe) {
-                    dayPolygon.addPoint(
-                            panelWidth, i);
                 }
-            } else {
-                dayPolygon.addPoint(
-                        0, i);
             }
         }
     }
