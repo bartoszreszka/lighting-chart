@@ -13,34 +13,30 @@ import static com.github.bartoszreszka.lighting_chart.view.Chart.*;
 
 public class DayPolygonPane extends APane {
 
-    private final int panelWidth,
-                      panelHeight;
     private Polygon dayPolygon;
 
     public DayPolygonPane() {
-        panelWidth = 24 * hourWidthInPixels;
-        panelHeight = getMonth().lengthOfMonth * dayHeightInPixels;
         repaint();
     }
 
     @Override
     protected void drawPane(Graphics g) {
         g.translate(0, dayHeightInPixels/4);
-        createDayPolygon();
+        dayPolygon = createDayPolygon();
         setColorsAndFont(g, nightColor, dayColor, null);
         g.fillPolygon(dayPolygon);
         drawMoonSymbols(g, Phenomena.MOONRISE, moonColorBright, textColor);
         drawMoonSymbols(g, Phenomena.MOONSET, moonColorDark, textColor);
     }
 
-    private void createDayPolygon() {
-        dayPolygon = new Polygon();
+    private Polygon createDayPolygon() {
+        Polygon tempDayPolygon = new Polygon();
         int i = 0;
 
         for (Day day : getMonth().days) {
             if (doesPhenomenonOccursOnGivenDay(day.getSunTimes().getRise(), day)) {
                 try {
-                    dayPolygon.addPoint(
+                    tempDayPolygon.addPoint(
                             day.getSunTimes().getRise().getHour() * hourWidthInPixels
                                     + ((int) (day.getSunTimes().getRise().getMinute() * 0.0166d * hourWidthInPixels)),
                             i);
@@ -58,9 +54,9 @@ public class DayPolygonPane extends APane {
 
         for (Day day : reversedDays) {
             i -= dayHeightInPixels;
-            if (doesPhenomenonOccursOnGivenDay(day.getSunTimes().getRise(), day)) {
+            if (doesPhenomenonOccursOnGivenDay(day.getSunTimes().getSet(), day)) {
                 try {
-                    dayPolygon.addPoint(
+                    tempDayPolygon.addPoint(
                             day.getSunTimes().getSet().getHour() * hourWidthInPixels
                                     + ((int) (day.getSunTimes().getSet().getMinute() * 0.0166d * hourWidthInPixels)),
                             i);
@@ -68,6 +64,8 @@ public class DayPolygonPane extends APane {
                 }
             }
         }
+
+        return tempDayPolygon;
     }
 
     private void drawMoon(Graphics g, Color fillColor, Color drawColor, int x, int y) {
