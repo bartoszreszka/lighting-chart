@@ -3,7 +3,7 @@ package com.github.bartoszreszka.lighting_chart;
 import com.github.bartoszreszka.lighting_chart.controller.GUI;
 
 /**
- * Program calculates and generates "lighting chart" for following phenomenons in a given month:
+ * Program calculates and generates "lighting chart" for following phenomena in a given month:
  * <ul>
  *     <li>sunrise (top edge of the sun appears on the horizon);</li>
  *     <li>sunset (sun disappears below the horizon);</li>
