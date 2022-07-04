@@ -8,12 +8,11 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static com.github.bartoszreszka.lighting_chart.model.Computations.*;
+import static com.github.bartoszreszka.lighting_chart.model.Computations.doesPhenomenonOccursOnGivenDay;
+import static com.github.bartoszreszka.lighting_chart.model.Computations.getMonth;
 import static com.github.bartoszreszka.lighting_chart.view.Chart.*;
 
 public class DayPolygonPane extends APane {
-
-    private Polygon dayPolygon;
 
     public DayPolygonPane() {
         repaint();
@@ -21,9 +20,12 @@ public class DayPolygonPane extends APane {
 
     @Override
     protected void drawPane(Graphics g) {
-        g.translate(0, dayHeightInPixels/4);
-        dayPolygon = createDayPolygon();
+        // TODO: 03.07.2022 Check for memory leak as drawPane() method is executed over and over again.
+        g.translate(0, dayHeightInPixels / 4);
+        Polygon dayPolygon = createDayPolygon();
         setColorsAndFont(g, nightColor, dayColor, null);
+        g.fillPolygon(dayPolygon);
+        dayPolygon.translate(-1440, 0);
         g.fillPolygon(dayPolygon);
         drawMoonSymbols(g, Phenomena.MOONRISE, moonColorBright, textColor);
         drawMoonSymbols(g, Phenomena.MOONSET, moonColorDark, textColor);
@@ -32,14 +34,37 @@ public class DayPolygonPane extends APane {
     private Polygon createDayPolygon() {
         Polygon tempDayPolygon = new Polygon();
         int i = 0;
+        int sunrise = 0;
+        int sunset;
+        int previousSunrise;
+        int dayPolygonPaneWidth = 24 * hourWidthInPixels;
+        boolean sunrisePassingMidnight = false;
+
+        previousSunrise = getMonth().days.get(0).getSunTimes().getRise().getHour() * hourWidthInPixels
+                + ((int) (getMonth().days.get(0).getSunTimes().getRise().getMinute() * 0.0166d * hourWidthInPixels));
 
         for (Day day : getMonth().days) {
             if (doesPhenomenonOccursOnGivenDay(day.getSunTimes().getRise(), day)) {
                 try {
-                    tempDayPolygon.addPoint(
-                            day.getSunTimes().getRise().getHour() * hourWidthInPixels
-                                    + ((int) (day.getSunTimes().getRise().getMinute() * 0.0166d * hourWidthInPixels)),
-                            i);
+                    sunrise = day.getSunTimes().getRise().getHour() * hourWidthInPixels
+                            + ((int) (day.getSunTimes().getRise().getMinute() * 0.0166d * hourWidthInPixels));
+                    if (previousSunrise < sunrise) {
+                        if (Math.abs(previousSunrise - sunrise) > ((previousSunrise + dayPolygonPaneWidth) - sunrise)) {
+                            tempDayPolygon.addPoint(dayPolygonPaneWidth - sunrise, i);
+                            sunrisePassingMidnight = true;
+                        } else {
+                            tempDayPolygon.addPoint(sunrise, i);
+                        }
+                    } else if (previousSunrise > sunrise) {
+                        if (Math.abs(previousSunrise - sunrise) > ((sunrise + dayPolygonPaneWidth) - previousSunrise)) {
+                            tempDayPolygon.addPoint(dayPolygonPaneWidth + sunrise, i);
+                            sunrisePassingMidnight = true;
+                        } else {
+                            tempDayPolygon.addPoint(sunrise, i);
+                        }
+                    } else {
+                        tempDayPolygon.addPoint(sunrise, i);
+                    }
                 } catch (NullPointerException npe) {
                 } finally {
                     i += dayHeightInPixels;
@@ -56,15 +81,17 @@ public class DayPolygonPane extends APane {
             i -= dayHeightInPixels;
             if (doesPhenomenonOccursOnGivenDay(day.getSunTimes().getSet(), day)) {
                 try {
-                    tempDayPolygon.addPoint(
-                            day.getSunTimes().getSet().getHour() * hourWidthInPixels
-                                    + ((int) (day.getSunTimes().getSet().getMinute() * 0.0166d * hourWidthInPixels)),
-                            i);
+                    sunset = day.getSunTimes().getSet().getHour() * hourWidthInPixels
+                            + ((int) (day.getSunTimes().getSet().getMinute() * 0.0166d * hourWidthInPixels));
+                    if (sunrisePassingMidnight || (sunset < sunrise)) {
+                        tempDayPolygon.addPoint(sunset + dayPolygonPaneWidth, i);
+                    } else {
+                        tempDayPolygon.addPoint(sunset, i);
+                    }
                 } catch (NullPointerException npe) {
                 }
             }
         }
-
         return tempDayPolygon;
     }
 
