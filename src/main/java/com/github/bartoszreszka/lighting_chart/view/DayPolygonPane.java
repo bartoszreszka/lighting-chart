@@ -25,7 +25,7 @@ public class DayPolygonPane extends APane {
         Polygon dayPolygon = createDayPolygon();
         setColorsAndFont(g, nightColor, dayColor, null);
         g.fillPolygon(dayPolygon);
-        dayPolygon.translate(-1440, 0);
+        dayPolygon.translate(-(hourWidthInPixels * 24), 0);
         g.fillPolygon(dayPolygon);
         drawMoonSymbols(g, Phenomena.MOONRISE, moonColorBright, textColor);
         drawMoonSymbols(g, Phenomena.MOONSET, moonColorDark, textColor);
@@ -114,9 +114,9 @@ public class DayPolygonPane extends APane {
             drawMoon(g,
                     fillColor,
                     drawColor,
-                    hourWidthInPixels * getHourOf(phenomena, day)
-                            + ((hourWidthInPixels / 60) * getMinutesOf(phenomena, day))
-                            - (moonSize / 2),
+                    (int) (hourWidthInPixels * getHourOf(phenomena, day)
+                            + ((0.0166d * hourWidthInPixels) * getMinutesOf(phenomena, day))
+                            - (moonSize / 2)),
                     i * dayHeightInPixels - (moonSize / 2));
             i++;
         }

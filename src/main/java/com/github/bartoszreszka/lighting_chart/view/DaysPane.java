@@ -15,7 +15,7 @@ public class DaysPane extends APane {
         for (Day day : getMonth().days) {
             g.drawString(String.valueOf(day.getZonedDateTime().getDayOfMonth()),
                     0,
-                    i * Chart.dayHeightInPixels + (Chart.fontHeight / 2));
+                    i * Chart.dayHeightInPixels + (Chart.fontHeight / 2) + 1);
             i++;
         }
     }

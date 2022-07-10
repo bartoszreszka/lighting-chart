@@ -21,7 +21,7 @@ public class MoonsetPane extends APane {
                     getMinutesOf(Phenomena.MOONSET, day));
             g.drawString(String.valueOf(f),
                     0,
-                    i * Chart.dayHeightInPixels + (Chart.fontHeight / 2));
+                    i * Chart.dayHeightInPixels + (Chart.fontHeight / 2) + 1);
             i++;
             f.close();
         }
