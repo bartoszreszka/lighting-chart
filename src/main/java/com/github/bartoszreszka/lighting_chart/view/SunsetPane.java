@@ -22,7 +22,7 @@ public class SunsetPane extends APane {
                     getMinutesOf(Phenomena.SUNSET, day));
             g.drawString(String.valueOf(f),
                     0,
-                    i * Chart.dayHeightInPixels + (Chart.fontHeight / 2));
+                    i * Chart.dayHeightInPixels + (Chart.fontHeight / 2) + 1);
             i++;
             f.close();
         }

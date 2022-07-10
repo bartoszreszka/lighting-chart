@@ -47,7 +47,7 @@ public class Chart extends JDialog {
 
     static {
         dayHeightInPixels = 20;
-        hourWidthInPixels = 60;
+        hourWidthInPixels = 40;
         fontHeight = 16;
         titleFontHeight = 24;
         font = null;
@@ -59,11 +59,11 @@ public class Chart extends JDialog {
         textColor = Color.BLACK;
         moonColorBright = Color.YELLOW;
         moonColorDark = Color.DARK_GRAY;
-        moonSize = 20;
+        moonSize = 18;
     }
 
     public Chart() {
-        setTitle("Grafik Oświetlenia.");
+        setTitle("Grafik Oświetlenia");
         setContentPane(contentPane);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -132,7 +132,7 @@ public class Chart extends JDialog {
         buttonPane.setBackground(backgroundColor);
         setTitleLabel();
         setUpMenu();
-        setSize(dpp.getWidth(), dpp.getHeight() + 80); // Fixed size in form file has been set: rulerPane 1440, daysPaneLeft 600.
+        setSize(dpp.getWidth(), dpp.getHeight() + 80); // Fixed size in form file has been set: rulerPane 961, daysPaneLeft 610.
         pack();
         setLocationRelativeTo(null);
         contentPane.revalidate();

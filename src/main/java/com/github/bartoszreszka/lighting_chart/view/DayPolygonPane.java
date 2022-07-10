@@ -114,9 +114,9 @@ public class DayPolygonPane extends APane {
             drawMoon(g,
                     fillColor,
                     drawColor,
-                    hourWidthInPixels * getHourOf(phenomena, day)
-                            + ((hourWidthInPixels / 60) * getMinutesOf(phenomena, day))
-                            - (moonSize / 2),
+                    (int) (hourWidthInPixels * getHourOf(phenomena, day)
+                            + ((0.0166d * hourWidthInPixels) * getMinutesOf(phenomena, day))
+                            - (moonSize / 2)),
                     i * dayHeightInPixels - (moonSize / 2));
             i++;
         }
