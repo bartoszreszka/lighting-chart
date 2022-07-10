@@ -25,7 +25,7 @@ public class DayPolygonPane extends APane {
         Polygon dayPolygon = createDayPolygon();
         setColorsAndFont(g, nightColor, dayColor, null);
         g.fillPolygon(dayPolygon);
-        dayPolygon.translate(-1440, 0);
+        dayPolygon.translate(-(hourWidthInPixels * 24), 0);
         g.fillPolygon(dayPolygon);
         drawMoonSymbols(g, Phenomena.MOONRISE, moonColorBright, textColor);
         drawMoonSymbols(g, Phenomena.MOONSET, moonColorDark, textColor);
