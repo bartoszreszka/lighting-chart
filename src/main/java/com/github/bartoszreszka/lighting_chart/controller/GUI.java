@@ -1,12 +1,14 @@
 package com.github.bartoszreszka.lighting_chart.controller;
 
 import com.github.bartoszreszka.lighting_chart.model.*;
+import com.github.bartoszreszka.lighting_chart.view.About;
 import com.github.bartoszreszka.lighting_chart.view.Chart;
 import org.shredzone.commons.suncalc.MoonPhase;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.stream.Collectors;
@@ -31,7 +33,7 @@ public class GUI extends JDialog {
         setResizable(false);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
-        setVisible(true);
+        setUpMenu();
 
         predefinedHarboursComboBox.setModel(
                 new javax.swing.DefaultComboBoxModel<>(
@@ -45,6 +47,22 @@ public class GUI extends JDialog {
                 onOK();
             }
         });
+
+        setVisible(true);
+    }
+
+    private void setUpMenu() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("Pomoc");
+        menu.setMnemonic(KeyEvent.VK_P);
+
+        JMenuItem about = new JMenuItem("O programie");
+        about.setMnemonic(KeyEvent.VK_O);
+        about.addActionListener(e -> about());
+
+        menu.add(about);
+        menuBar.add(menu);
+        this.setJMenuBar(menuBar);
     }
 
     private void onOK() {
@@ -53,6 +71,10 @@ public class GUI extends JDialog {
         new Chart();
         this.setVisible(false);
         printToStandardOutput();
+    }
+
+    private void about() {
+        new About();
     }
 
     private Month parseMonthAndYearFromSpinners() {
