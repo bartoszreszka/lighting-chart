@@ -2,6 +2,9 @@ package com.github.bartoszreszka.lighting_chart;
 
 import com.github.bartoszreszka.lighting_chart.controller.GUI;
 
+import java.awt.*;
+import java.io.IOException;
+
 /**
  * Program calculates and generates "lighting chart" for following phenomena in a given month:
  * <ul>
@@ -20,7 +23,7 @@ public class Main {
 
     public static GUI gui;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         gui = new GUI();
     }
 }

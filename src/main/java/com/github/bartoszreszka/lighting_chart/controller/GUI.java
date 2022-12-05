@@ -33,6 +33,8 @@ public class GUI extends JDialog {
         setResizable(false);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
+        ImageIcon icon = new ImageIcon("eclipse.png");
+        setIconImage(icon.getImage());
         setUpMenu();
 
         predefinedHarboursComboBox.setModel(

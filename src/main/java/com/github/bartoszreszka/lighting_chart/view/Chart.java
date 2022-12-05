@@ -69,6 +69,8 @@ public class Chart extends JDialog {
         setResizable(false);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
+        ImageIcon icon = new ImageIcon("eclipse.png");
+        setIconImage(icon.getImage());
         setVisible(true);
         loadAllPanes();
 
