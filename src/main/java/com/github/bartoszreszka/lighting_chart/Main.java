@@ -2,9 +2,6 @@ package com.github.bartoszreszka.lighting_chart;
 
 import com.github.bartoszreszka.lighting_chart.controller.GUI;
 
-import java.awt.*;
-import java.io.IOException;
-
 /**
  * Program calculates and generates "lighting chart" for following phenomena in a given month:
  * <ul>
@@ -16,7 +13,7 @@ import java.io.IOException;
  * </ul>
  * <br>
  * @see     <a href="https://shredzone.org/">commons-suncalc</a>;
- * @version 1.0.3
+ * @version 1.1.0
  * @author  Bartosz Reszka
  * */
 public class Main {
