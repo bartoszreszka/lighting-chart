@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.stream.Collectors;
 
-public class GUI extends JDialog {
+public class GUI extends JFrame {
     private JPanel contentPane;
     private JSpinner spinner1;
     private JSpinner spinner2;

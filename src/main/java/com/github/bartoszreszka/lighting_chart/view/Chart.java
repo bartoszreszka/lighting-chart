@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Chart extends JDialog {
+public class Chart extends JFrame {
     public static Font font;
     public static Color backgroundColor;
     public static Color textColor;
