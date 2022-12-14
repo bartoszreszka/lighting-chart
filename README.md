@@ -10,7 +10,7 @@ A Java program that calculates times and generates "lighting chart" for followin
 
 ## Features
 
-- Requires Java 8 or higher;
+- Requires [Java 8](https://www.java.com/pl/) or higher;
 - depends on [commons-suncalc](https://github.com/shred/commons-suncalc) library.
 
 ## Accuracy
