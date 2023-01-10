@@ -8,6 +8,7 @@
       <element id="module-output" name="lighting-chart" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/shredzone/commons/commons-suncalc/3.5/commons-suncalc-3.5.jar" path-in-jar="/" />
+      <element id="file-copy" path="B:/projekty/grafik-oswietlenia/resources/eclipse.png" />
     </root>
   </artifact>
 </component>

@@ -1,5 +1,6 @@
 package com.github.bartoszreszka.lighting_chart.controller;
 
+import com.github.bartoszreszka.lighting_chart.Main;
 import com.github.bartoszreszka.lighting_chart.model.*;
 import com.github.bartoszreszka.lighting_chart.view.About;
 import com.github.bartoszreszka.lighting_chart.view.Chart;
@@ -26,15 +27,14 @@ public class GUI extends JFrame {
     private JButton buttonOK;
 
     public GUI() {
-        setTitle("Grafik Oświetlenia");
+        setTitle(Main.getProgTitle() + " " + Main.getVersion());
         setContentPane(contentPane);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(600, 400);
         setResizable(false);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
-        ImageIcon icon = new ImageIcon("eclipse.png");
-        setIconImage(icon.getImage());
+        setIconImage(Main.getIcon().getImage());
         setUpMenu();
 
         predefinedHarboursComboBox.setModel(
