@@ -32,7 +32,7 @@ public class About extends JDialog {
         aboutLabel.setText("Program służy do obliczania i wykreślania \"grafiku oświetlenia\" dla predefiniowanej " +
                 "lub wprowadzonej lokalizacji.");
         downloadLabel.setText("Pobierz najnowszą wersję programu:");
-        adressLabel.setText("https://github.com/bartoszreszka/lighting-chart/releases/latest/");
+        adressLabel.setText("https://bartoszreszka.github.io/lighting-chart/");
         authorLabel.setText("\u00a9 Bartosz Reszka, 2022");
         adressLabel.setForeground(Color.BLUE.darker());
         adressLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -41,7 +41,7 @@ public class About extends JDialog {
             public void mouseClicked(MouseEvent e) {
                 try {
                     Desktop.getDesktop()
-                            .browse(new URI("https://github.com/bartoszreszka/lighting-chart/releases/latest/"));
+                            .browse(new URI("https://bartoszreszka.github.io/lighting-chart/"));
                 } catch (IOException | URISyntaxException e1) {
                     e1.printStackTrace();
                 } finally {
@@ -50,11 +50,11 @@ public class About extends JDialog {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                adressLabel.setText("<html><a href=''>https://github.com/bartoszreszka/lighting-chart/releases/latest/</a></html>");
+                adressLabel.setText("<html><a href=''>https://bartoszreszka.github.io/lighting-chart/</a></html>");
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                adressLabel.setText("https://github.com/bartoszreszka/lighting-chart/releases/latest/");
+                adressLabel.setText("https://bartoszreszka.github.io/lighting-chart/");
             }
         });
         eMail.setText("br.reszka@gmail.com");
