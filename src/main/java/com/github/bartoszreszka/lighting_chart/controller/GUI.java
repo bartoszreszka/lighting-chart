@@ -25,6 +25,7 @@ public class GUI extends JFrame {
     private JTextField longMinutesField;
     private JTextField pointNameField;
     private JButton buttonOK;
+    private Location location;
 
     public GUI() {
         setTitle(Main.getProgTitle() + " " + Main.getVersion());
@@ -92,42 +93,35 @@ public class GUI extends JFrame {
     }
 
     private Location parseCoordsFromTextFields() {
-        Location location;
+        location = getLocationFromSpinner();
         double  lat,
                 lng;
-        int     latDeg,
-                lngDeg;
-        double  latMinutes,
-                lngMinutes;
 
         if (coordsAreProvided()) {
-            if (!latMinutesField.getText().isEmpty() || !longMinutesField.getText().isEmpty()) {
-                // Parse degrees and minutes given separately
-                latDeg = Integer.parseInt(latDegField.getText());
-                latMinutes = Double.parseDouble(latMinutesField.getText());
-                lngDeg = Integer.parseInt(longDegField.getText());
-                lngMinutes = Double.parseDouble(longMinutesField.getText());
-                lat = latDeg + (latMinutes / 60);
-                lng = lngDeg + (lngMinutes / 60);
-            } else {
-                // Parse degrees given in decimal format
+            try {
                 lat = Double.parseDouble(latDegField.getText().replaceAll("[,]", "."));
                 lng = Double.parseDouble(longDegField.getText().replaceAll("[,]", "."));
+                if (!(lat >= -90 && lat <= 90) || !(lng >=-180 && lng <= 180)) {
+                    return location;
+                }
+                if (!pointNameField.getText().isEmpty()) {
+                    location = new LocationCoordinates(lat, lng, pointNameField.getText());
+                } else {
+                    location = new LocationCoordinates(lat, lng);
+                }
+            } catch (NumberFormatException nfe) {
+                nfe.printStackTrace();
             }
-            if (!pointNameField.getText().isEmpty()) {
-                location = new LocationCoordinates(lat, lng, pointNameField.getText());
-            } else {
-                location = new LocationCoordinates(lat, lng);
-            }
-        } else {
-            // Get harbour selected from comboBox
-            location = Arrays.stream(Locations.values())
-                    .filter(locations -> locations.locName()
-                            .equals(predefinedHarboursComboBox.getSelectedItem().toString()))
-                    .collect(Collectors.toList())
-                    .get(0);
         }
         return location;
+    }
+
+    private Location getLocationFromSpinner() {
+        return location = Arrays.stream(Locations.values())
+                .filter(locations -> locations.locName()
+                        .equals(predefinedHarboursComboBox.getSelectedItem().toString()))
+                .collect(Collectors.toList())
+                .get(0);
     }
 
     private boolean coordsAreProvided() {
