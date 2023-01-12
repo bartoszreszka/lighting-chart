@@ -2,8 +2,8 @@ package com.github.bartoszreszka.lighting_chart.controller;
 
 import com.github.bartoszreszka.lighting_chart.Main;
 import com.github.bartoszreszka.lighting_chart.model.*;
-import com.github.bartoszreszka.lighting_chart.view.About;
 import com.github.bartoszreszka.lighting_chart.view.Chart;
+import com.github.bartoszreszka.lighting_chart.view.About;
 import org.shredzone.commons.suncalc.MoonPhase;
 
 import javax.swing.*;
