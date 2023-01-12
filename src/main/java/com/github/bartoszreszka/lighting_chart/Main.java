@@ -24,8 +24,8 @@ public class Main {
     private static final String progTitle = "Grafik Oświetlenia";
     private static final String version = "v1.1.1";
     private static final ImageIcon icon = new ImageIcon(Main.class.getResource("/eclipse.png"));
-    // Uncomment below line for development in IntelliJ:
-//        private static final ImageIcon icon = new ImageIcon("eclipse.png");
+    // Use below line for development in IntelliJ:
+//    private static final ImageIcon icon = new ImageIcon("eclipse.png");
 
     public static void main(String[] args){
         gui = new GUI();
