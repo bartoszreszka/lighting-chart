@@ -28,4 +28,4 @@ For more information about calculations reach out for the comprehensive [commons
 
 ## License
 
-_Lighting chart_ is open source software. The source code is distributed under the terms of [MIT License](https://github.com/bartoszreszka/lighting-chart/blob/master/LICENSE).
+_Lighting chart_ is open source software. The source code is distributed under the terms of [Apache License 2.0](https://github.com/bartoszreszka/lighting-chart/blob/master/LICENSE).
