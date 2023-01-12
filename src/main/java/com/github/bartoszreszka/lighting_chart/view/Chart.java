@@ -1,8 +1,8 @@
 package com.github.bartoszreszka.lighting_chart.view;
 
-import com.github.bartoszreszka.lighting_chart.model.Computations;
 import com.github.bartoszreszka.lighting_chart.Main;
 import com.github.bartoszreszka.lighting_chart.controller.Printer;
+import com.github.bartoszreszka.lighting_chart.model.Computations;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,14 +63,13 @@ public class Chart extends JFrame {
     }
 
     public Chart() {
-        setTitle("Grafik Oświetlenia");
+        setTitle(Main.getProgTitle() + " " + Main.getVersion());
         setContentPane(contentPane);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
-        ImageIcon icon = new ImageIcon("eclipse.png");
-        setIconImage(icon.getImage());
+        setIconImage(Main.getIcon().getImage());
         setVisible(true);
         loadAllPanes();
 

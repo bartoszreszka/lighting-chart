@@ -1,5 +1,7 @@
 package com.github.bartoszreszka.lighting_chart.view;
 
+import com.github.bartoszreszka.lighting_chart.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,10 +26,9 @@ public class About extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        ImageIcon icon = new ImageIcon("eclipse.png");
-        setIconImage(icon.getImage());
-        setTitle("O programie");
-        iconLabel.setIcon(icon);
+        setIconImage(Main.getIcon().getImage());
+        setTitle(Main.getProgTitle() + " " + Main.getVersion() + " - o programie");
+        iconLabel.setIcon(Main.getIcon());
         aboutLabel.setText("Program służy do obliczania i wykreślania \"grafiku oświetlenia\" dla predefiniowanej " +
                 "lub wprowadzonej lokalizacji.");
         downloadLabel.setText("Pobierz najnowszą wersję programu:");
@@ -63,8 +64,10 @@ public class About extends JDialog {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
+                    String subject = Main.getProgTitle() + " " + Main.getVersion();
+                    String uri = "mailto:br.reszka@gmail.com?subject=" + subject;
                     Desktop.getDesktop()
-                            .browse(new URI("mailto:br.reszka@gmail.com?subject=Grafik%20oświetlenia"));
+                            .browse(new URI(uri.replaceAll(" ", "%20")));
                 } catch (IOException | URISyntaxException e1) {
                     e1.printStackTrace();
                 } finally {
